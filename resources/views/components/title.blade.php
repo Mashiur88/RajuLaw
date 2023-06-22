@@ -1,0 +1,1 @@
+    <title>{{ isset($title) ? config('app.name') . ' | ' . $title : '' }}</title>
