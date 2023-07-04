@@ -1,11 +1,13 @@
 @php
+    
     $disabled = $errors->any() || empty($this->name) || empty($this->image) || empty($this->designation) ? true : false;
+    // $disabled = false;
 @endphp
 <x-slot name="title">
     {{ $page_title }}
 </x-slot>
 @push('css')
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endpush
 <div class="row justify-center">
@@ -29,7 +31,7 @@
                     <x-form.button title="Save" type="submit" wire:loading.attr='disabled' :disabled="$disabled" />
                 </form>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
 @push('js')
