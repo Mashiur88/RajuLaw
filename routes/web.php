@@ -112,7 +112,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('core_value', CoreValueIndex::class)->name('core_value');
 });
 
-Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+// Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/request_data', [HomeController::class, 'request_data'])->name('request_data');
 
 // frontend
