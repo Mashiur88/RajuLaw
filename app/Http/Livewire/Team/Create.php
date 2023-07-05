@@ -40,7 +40,7 @@ class Create extends Component
         $team_create->in  = $this->in;
         $team_create->image  = $this->image->store('files', 'public');
         $team_create->save();
-        dd($this);
+        // dd($this);
 
         session()->flash('message', 'Team created successfully');
         $this->reset();

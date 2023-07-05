@@ -26,7 +26,11 @@
                     <x-form.input_field labelname="linkdin Link" for="in" wire:model.debounce.300ms='in' />
                     <x-form.textarea labelname="About" for="about" id="summernote"
                         wire:model.debounce.300ms='about'/>
-
+                    @if($image)
+                        <div class="avatar avatar-md me-2">
+                            <img src="{{ $image->temporaryUrl() }}" alt="Avatar" class="rounded-circle">
+                        </div>
+                    @endif
                     <x-form.input_field labelname="Upload profile image (357 x 448)" for="image" type="file" wire:model.debounce.300ms='image' />
                     <x-form.button title="Save" type="submit" wire:loading.attr='disabled' :disabled="$disabled" />
                 </form>
