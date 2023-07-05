@@ -35,8 +35,9 @@
             <div class="col">
                 <ul class="nav navbar service-page-nav">
                     @foreach ($data->parent_service->chirld_services as $data2)
-                        <li class="{{ $data2->id == $data->id ? 'active' : '' }}"><a
-                                href="{{ route('single_service', [$data2->id]) }}">{{ $data2->name }}</a></li>
+                        <li class="{{ $data2->id == $data->id ? 'active' : '' }}">
+                            <a href="{{ route('service', ['parent_slag'=>$data->parent_service->slug,'slag'=>$data2->slag])}}">{{ $data2->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>

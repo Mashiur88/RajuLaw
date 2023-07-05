@@ -117,7 +117,7 @@ Route::get('/request_data', [HomeController::class, 'request_data'])->name('requ
 
 // frontend
 Route::get('/', Home::class)->name('home');
-Route::get('/single_service/{slag}', SingleService::class)->name('single_service');
+Route::get('/service/{parent_slag}/{slag}', SingleService::class)->name('service');
 Route::get('/blog_list/{type}', BlogList::class)->name('blog_list');
 Route::get('/blog_single/{type}/{slag}', BlogSingle::class)->name('blog_single');
 Route::get('/team', Team::class)->name('team');
