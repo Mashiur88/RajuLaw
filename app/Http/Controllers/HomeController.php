@@ -22,7 +22,7 @@ class HomeController extends Controller
         return view('frontend.pasges.home', compact('team_member', 'service_item', 'faqs'));
     }
 
-    public function single_service($type, $id)
+    public function service($type, $id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         if ($type == "service") {
             $data = ServiceChieldModel::find($id);

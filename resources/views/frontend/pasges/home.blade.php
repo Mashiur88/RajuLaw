@@ -119,7 +119,7 @@
                             <ul class="navbar-nav">
                                 @foreach($data->chirld_services as $data2)
                                     <li>
-                                        <i class="fa fa-angle-right"></i> <a href="{{route('single_service',['service',$data2->id])}}">{{$data2['name']}}</a>
+                                        <i class="fa fa-angle-right"></i> <a href="{{route('service',['service',$data2->id])}}">{{$data2['name']}}</a>
                                     </li>
                                 @endforeach
                             </ul>

@@ -1,7 +1,10 @@
 @php
     $disabled = null;
 @endphp
-
+@push('css')
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endpush
 <x-slot name="title">
     {{ $page_title }}
 </x-slot>
@@ -46,7 +49,7 @@
                             <x-form.input_field labelname="title" for="title"
                                 wire:model.debounce.300ms='title' required/>
 
-                            <x-form.textarea labelname="desc" for="desc"
+                            <x-form.textarea labelname="desc" for="desc" id="desc"
                                 wire:model.debounce.300ms='desc' required/>
 
                             <x-form.button title="Save" type="submit" wire:loading.attr='disabled' :disabled="$disabled"
@@ -94,3 +97,36 @@
         </div>
     </div>
 </div>
+
+@push('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#desc').summernote({
+                placeholder: '',
+                tabsize: 2,
+                height: 250,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                        ['insert', ['link', 'picture', 'video']],
+                ],
+
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                    @this.set('desc', contents)
+                    }
+                }
+            });
+
+            // $('.select2').select2();
+        });
+    </script>
+@endpush
