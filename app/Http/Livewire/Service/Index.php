@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Service;
 
 use App\Models\ServiceModel;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -54,6 +55,7 @@ class Index extends Component
     {
         $service_parent = ServiceModel::find($this->edit_parent_date->id);
         $service_parent->name = $this->edit_parent_date['name'];
+        $service_parent->slug =Str::slug( $this->edit_parent_date['name']);
         $service_parent->box_color = $this->edit_parent_date['box_color'];
         $service_parent->box_icon = $this->edit_icon ? $this->edit_icon->store('files', 'public'): $service_parent->box_icon;
         $service_parent->update();
@@ -81,6 +83,7 @@ class Index extends Component
 
         $service = new ServiceModel();
         $service->name = $this->name;
+        $service->slug = Str::slug($this->name);
         $service->box_color = $this->box_color;
         $service->box_icon = $this->box_icon->store('files', 'public');
         $service->save();
