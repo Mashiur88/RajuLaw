@@ -30,7 +30,7 @@
                                             <ul class="mega-sub-menu">
                                                 @foreach ($data->chirld_services as $data2)
                                                     <li><a
-                                                            href="{{ route('single_service', [$data2->slag]) }}">{{ $data2->name }}</a>
+                                                            href="{{ route('service', ['parent_slag'=>$data->slug,'slag'=>$data2->slag]) }}">{{ $data2->name }}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -130,7 +130,7 @@
                 <ul class="m-sub-menu">
                     @foreach ($service_item as $key => $data)
                             <li><a
-                                    href="{{ route('single_service', [$data->chirld_services()->first()->slag]) }}">{{ $data->name }}</a>
+                                    href="{{ route('service', ['parent_slag'=>$data->slug,'slag'=>$data2->slag]) }}">{{ $data->name }}</a>
                             </li>
                     @endforeach
                 </ul>

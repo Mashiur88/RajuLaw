@@ -148,7 +148,7 @@
                                 @foreach ($data->chirld_services as $data2)
                                     <li>
                                         <i class="fa fa-angle-right"></i> <a
-                                            href="{{ route('single_service', [$data2->id]) }}">{{ $data2['name'] }}</a>
+                                            href="{{ route('service', ['parent_slag'=>$data->slug,'slag'=>$data2->slag]) }}">{{ $data2['name'] }}</a>
                                     </li>
                                 @endforeach
                             </ul>
