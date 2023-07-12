@@ -8,6 +8,8 @@ use App\Http\Livewire\Contactmessage\Index as ContactmessageIndex;
 use App\Http\Livewire\CoreValue\Index as CoreValueIndex;
 use App\Http\Livewire\Dashboard\Dashboard;
 use App\Http\Livewire\Faq\FaqContent;
+use App\Http\Livewire\Faq\CreateChild;
+use App\Http\Livewire\Faq\EditChild;
 use App\Http\Livewire\Faq\Index as FaqIndex;
 use App\Http\Livewire\Frontend\AboutUs;
 use App\Http\Livewire\Frontend\Appointment;
@@ -61,6 +63,10 @@ Route::get('/clear_cache', function () {
 return 'Clear Cache';
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 
 // backend
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
@@ -78,6 +84,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('create_legal_fees', LegalFeesCreate::class)->name('create_legal_fees');
     Route::get('edit_legal_fees/{id}', LegalFeesEdit::class)->name('edit_legal_fees');
     Route::get('faq_content/{parent_id}', FaqContent::class)->name('faq_content');
+    Route::get('create_faq_content/{parent_id}', CreateChild::class)->name('create_faq_content');
+    Route::get('edit_faq_content/{parent_id}/{child_id}', EditChild::class)->name('edit_faq_content');
     //FAQ
     Route::get('ligal_fees', LegalFeesIndex::class)->name('ligal_fees');
     //client feedback
