@@ -19,4 +19,3 @@ class Team extends Model
             ->where('designation', 'like', '%' . $search . '%');
     }
 }
- 
