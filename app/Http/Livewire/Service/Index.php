@@ -22,8 +22,8 @@ class Index extends Component
         'edit_parent_date.*' => 'string',
         'edit_parent_date.box_icon' => 'image|mimes:jpeg,png,jpg,gif,svg',
         'edit_parent_date.box_color' => 'string',
-        'name' => 'required',
-        'box_icon' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        'edit_parent_date.name' => 'required',
+        'edit_parent_date.box_icon' => 'image|mimes:jpeg,png,jpg,gif,svg',
     ];
 
     public function mount()
@@ -55,7 +55,7 @@ class Index extends Component
     {
         $service_parent = ServiceModel::find($this->edit_parent_date->id);
         $service_parent->name = $this->edit_parent_date['name'];
-        $service_parent->slug =Str::slug( $this->edit_parent_date['name']);
+        $service_parent->slug = Str::slug( $this->edit_parent_date['name']);
         $service_parent->box_color = $this->edit_parent_date['box_color'];
         $service_parent->box_icon = $this->edit_icon ? $this->edit_icon->store('files', 'public'): $service_parent->box_icon;
         $service_parent->update();

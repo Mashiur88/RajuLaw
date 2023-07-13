@@ -55,3 +55,4 @@ class Index extends Component
         ])->layout('admin.app');
     }
 }
+ 

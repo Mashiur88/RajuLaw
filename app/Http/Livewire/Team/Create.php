@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Team;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+ 
 class Create extends Component
 {
     use WithFileUploads;
@@ -40,6 +40,7 @@ class Create extends Component
         $team_create->in  = $this->in;
         $team_create->image  = $this->image->store('files', 'public');
         $team_create->save();
+        // dd($this);
 
         session()->flash('message', 'Team created successfully');
         $this->reset();
