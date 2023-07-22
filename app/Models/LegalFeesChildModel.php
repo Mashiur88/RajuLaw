@@ -13,4 +13,8 @@ class LegalFeesChildModel extends Model
     protected $table = "legal_fees_child";
 
     protected $fillable = ['lebel','tag'];
+
+    public function legalFees(){
+        return $this->belongsTo(LegalFeesModel::class,'parent_id');
+    }
 }

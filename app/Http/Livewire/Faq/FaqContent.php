@@ -14,7 +14,8 @@ class FaqContent extends Component
         $edit_data,
         $edit_id,
         $title,
-        $desc,$edit_parent_date
+        $desc,
+        $edit_parent_date;
 
     public function delete($id)
     {
