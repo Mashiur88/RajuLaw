@@ -1,5 +1,6 @@
 @php
     $disabled = $errors->any() || empty($this->name) || empty($this->designation) ? true : false;
+    // dd($this->name);
 @endphp
 <x-slot name="title">
     {{ $page_title }}
@@ -33,7 +34,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 @push('js')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

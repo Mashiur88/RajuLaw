@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Team;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+ 
 class Edit extends Component
 {
     use WithFileUploads;
@@ -36,6 +36,7 @@ class Edit extends Component
     {
         $this->member_id = $member_id;
         $member = Team::find($member_id);
+        // dd($member);
         $this->name = $member->name;
         $this->designation = $member->designation;
         $this->about = $member->about;
@@ -63,6 +64,7 @@ class Edit extends Component
         $this->image = $member_update->image;
         return redirect(request()->header('Referer'));
     }
+    
     public function render()
     {
         return view('livewire.team.edit')->layout('admin.app');
