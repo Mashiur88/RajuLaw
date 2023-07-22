@@ -41,6 +41,7 @@ class Edit extends Component
         $member_update->title  = $this->title;
         $member_update->slag  = Str::slug($this->title);
         $member_update->desc  = $this->desc;
+        $member_update->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->desc));
         $member_update->banner_image  = $this->banner_image !== $member_update->banner_image ? $this->banner_image->store('files', 'public') : $member_update->banner_image;
         $member_update->update();
 
