@@ -53,6 +53,11 @@ class Search extends Component
             foreach ($columns as $column) {
                 $temp->orwhere($column, 'LIKE', '%' . $search . '%');
             }
+
+            if($model == ServiceChieldModel::class){
+                $temp->with('parent_service');
+            }
+
             $results[] = $temp->get()->toArray();
         }
         $data = array_merge(...$results);
