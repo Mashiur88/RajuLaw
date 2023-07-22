@@ -12,11 +12,15 @@ class BlogSingle extends Component
 
     public function mount($type, $slag)
     {
+        // dd($type);
+        // dd($slag);
         if ($type == "immigration") {
             $this->post = ImmigrationNewsModel::where('slag',$slag)->first();
+            // dd($this->post);
             $this->page_title = $this->post->title;
         }else {
             $this->post = GuideLineModel::where('slag',$slag)->first();
+            // dd($this->post);
             $this->page_title = $this->post->title;
         }
     }

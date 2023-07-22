@@ -19,7 +19,7 @@ class Search extends Component
 {
     use WithPagination;
 
-    public $page_title = "search result", $search_data, $search_keyword;
+    public $page_title = "search oyt", $search_data, $search_keyword;
 
 
     public function mount($search)
@@ -34,7 +34,7 @@ class Search extends Component
             ServiceModel::class =>
                 ['name'],
             ServiceChieldModel::class =>
-                ['name'],
+                ['name', 'desc'],
             Team::class =>
                 ['name', 'designation', 'about'],
             LegalFeesModel::class =>
@@ -42,8 +42,8 @@ class Search extends Component
             LegalFeesChildModel::class =>
                 ['section_name', 'lebel', 'tag',]
 
-        ];
-
+        ]; 
+ 
         $results = [];
 
         foreach ($searchArea as $model => $columns) {
@@ -58,7 +58,7 @@ class Search extends Component
         $data = array_merge(...$results);
 
         $this->search_data = $data;
-        dd($this->search_data);
+        // dd($this->search_data);
     }
 
 

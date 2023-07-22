@@ -18,7 +18,7 @@
                 <div class="col-md-9">
                     <div class="row">
                         @foreach ($search_data as $key => $data)
-                            @if ($data->type == 'faq')
+                            @if ($data['table_name'] == 'faq_child')
                                 <div class="col-md-12 col-lg-12 mb-5">
                                     <div class="post-box p-0 white-shadow-box">
                                         <div style="padding: 20px; margin-top: -30px;height:245px">
@@ -35,7 +35,24 @@
                                         </div>
                                     </div>
                                 </div>
-                            {{-- @elseif ($data->type == 'news')
+                            @elseif ($data['table_name'] == 'immigration_news')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['title'] }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('blog_single', ['type' => 'immigration', 'slag' => $data['slag']]) }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($data['table_name'] == 'guideline')
                                 <div class="col-md-12 col-lg-12 mb-5">
                                     <div class="post-box p-0 white-shadow-box">
                                         <div style="padding: 20px; margin-top: -30px;height:245px">
@@ -51,7 +68,75 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
+                            @elseif ($data['table_name'] == 'service_chield')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['name'] }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('service', ['parent_slag' => '', 'slag' => $data['slag']]) }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($data['table_name'] == 'services')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['name'] }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('service', ['parent_slag' => 'guideline', 'slag' => $data['slag']]) }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($data['table_name'] == 'team')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['name'] ."  ".$data['designation']  }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['about']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('team') }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($data['table_name'] == 'legal_fees_child')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['name'] ."  ".$data['designation']  }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['about']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('team') }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                                 <div class="col-md-12 col-lg-12 mb-5">
                                     <div class="post-box p-0 white-shadow-box">
@@ -59,11 +144,11 @@
                                             <p><small><i class="icofont-clock-time"></i>
                                                     {{ date_convertion($data['created_at']) }}
                                                 </small></p>
-                                            <h4>{{ $data['title'] }}</h4>
+                                            <h4>About us</h4>
 
                                             <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
                                                 <a class="red"
-                                                    href="{{ route('blog_single', ['type' => 'immigration', 'slag' => $data['slag']]) }}">See Details
+                                                    href="{{ route('about_us') }}">See Details
                                                 </a>
                                             </p>
                                         </div>
