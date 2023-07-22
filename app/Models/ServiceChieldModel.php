@@ -10,7 +10,7 @@ class ServiceChieldModel extends Model
     use HasFactory;
     protected $table = 'service_chield';
 
-    public function parent_service()
+    public function parent_service(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(ServiceModel::class,'service_id');
     }

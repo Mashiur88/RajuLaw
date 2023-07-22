@@ -35,6 +35,7 @@ class Create extends Component
         $team_create->name  = $this->name;
         $team_create->designation  = $this->designation;
         $team_create->about  = $this->about;
+        $team_create->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
         $team_create->fb  = $this->fb;
         $team_create->twt  = $this->twt;
         $team_create->in  = $this->in;

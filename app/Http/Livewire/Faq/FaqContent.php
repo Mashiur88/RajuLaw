@@ -14,7 +14,7 @@ class FaqContent extends Component
         $edit_data,
         $edit_id,
         $title,
-        $desc,$edit_parent_date;
+        $desc,$edit_parent_date
 
     public function delete($id)
     {
@@ -22,7 +22,6 @@ class FaqContent extends Component
         session()->flash('message', 'Deleteed successfully');
         $this->mount($this->parent_id);
     }
-
 
     public function mount($parent_id)
     {

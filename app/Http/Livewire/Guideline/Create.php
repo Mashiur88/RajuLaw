@@ -31,6 +31,7 @@ class Create extends Component
         $team_create->title  = $this->title;
         $team_create->slag  = Str::slug($this->title) ;
         $team_create->desc  = $this->desc;
+        $team_create->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->desc));
         $team_create->banner_image  = $this->banner_image->store('files', 'public');
         $team_create->save();
 

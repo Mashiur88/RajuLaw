@@ -52,6 +52,7 @@ class Edit extends Component
         $member_update->name  = $this->name;
         $member_update->designation  = $this->designation;
         $member_update->about  = $this->about;
+        $member_update->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
         $member_update->fb  = $this->fb;
         $member_update->twt  = $this->twt;
         $member_update->in  = $this->in;
