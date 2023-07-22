@@ -49,6 +49,7 @@ class ServiceCreate extends Component
         $this->service_details->name  = $this->name;
         $this->service_details->slag  = Str::slug($this->name) ;
         $this->service_details->desc  = $this->desc;
+        $this->service_details->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->desc));
         $this->service_details->color  = $this->color;
         $this->service_details->service_id  = $this->service_id;
         $this->service_details->icon  =  $this->icon !== $this->service_details->icon ? $this->icon->store('files', 'public') : $this->service_details->icon;

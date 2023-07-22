@@ -42,6 +42,7 @@ class CreateServiceChild extends Component
         $service_child->name = $this->name;
         $service_child->slag  = Str::slug($this->name) ;
         $service_child->desc = $this->desc;
+        $service_child->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->desc));
         $service_child->color = $this->color;
         $service_child->service_id = $this->parent_seervice->id;
         // $service_child->image =  $this->image->store('files', 'public');

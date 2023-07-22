@@ -26,17 +26,17 @@ class Search extends Component
     {
         $searchArea = [
             GuideLineModel::class =>
-                ['title', 'desc'],
+                ['title', 'plain_desc'],
             ImmigrationNewsModel::class =>
-                ['title', 'desc'],
+                ['title', 'plain_desc'],
             FaqChildModel::class =>
-                ['title', 'desc'],
+                ['title', 'plain_desc'],
             ServiceModel::class =>
-                ['name'],
+                ['name','plain_desc'],
             ServiceChieldModel::class =>
-                ['name', 'desc'],
+                ['name','plain_desc'],
             Team::class =>
-                ['name', 'designation', 'about'],
+                ['name', 'designation', 'plain_about'],
             LegalFeesModel::class =>
                 ['name', 'note', 'first_part', 'second_part'],
             LegalFeesChildModel::class =>
@@ -53,6 +53,11 @@ class Search extends Component
             foreach ($columns as $column) {
                 $temp->orwhere($column, 'LIKE', '%' . $search . '%');
             }
+
+            if($model == ServiceChieldModel::class){
+                $temp->with('parent_service');
+            }
+
             $results[] = $temp->get()->toArray();
         }
         $data = array_merge(...$results);
