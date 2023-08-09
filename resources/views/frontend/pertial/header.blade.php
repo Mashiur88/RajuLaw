@@ -51,6 +51,9 @@
                         </ul>
                     </li>
                     <li class="has-submenu">
+                        <a href="{{ route('appointment') }}">Events</a>
+                    </li>
+                    <li class="has-submenu">
                         <a href="#">More <i class="fa fa-angle-down"></i></a>
 
                         <!-- <div class="mega-menu"> -->

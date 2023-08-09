@@ -4,7 +4,7 @@
 @push('css')
     <style>
         section.slider-section {
-            background-image: url({{ asset('assets/frontend/img/banner/Vector_Bg.png') }});
+            background-image: url({{ asset("assets/frontend/img/banner/Vector_Bg.png") }});
             background-position: bottom center;
             background-repeat: no-repeat;
         }
@@ -81,13 +81,12 @@
                             <div class="team-meta">
                                 <h3>{{ $data['name'] }}</h3>
                                 <h5>{{ $data['designation'] }}</h5>
-                                <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
-                                        class="fas fa-angle-right ml-1"></i></a>
+                                {{--  <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
+                                        class="fas fa-angle-right ml-1"></i></a> --}}
                                 <div id="tpc-{{ $key + 1 }}" class="zoom-anim-dialog mfp-hide">
                                     <div class="tp-header">
                                         <div class="tp-img">
                                             <img src="{{ asset('storage/' . $data['image']) }}">
-
                                         </div>
                                         <div class="tp-meta">
                                             
@@ -328,8 +327,6 @@
                         <img src="{{ asset('storage/' . $data['image']) }}" />
                     </div>
                 @endforeach
-
-
             </div>
         </div>
     </section>

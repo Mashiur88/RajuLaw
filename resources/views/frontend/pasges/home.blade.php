@@ -515,32 +515,32 @@
 
 @endsection
 @push('js')
-        <script type="text/javascript">
-            const div = document.querySelector("#rewind");
-            const section = document.querySelector(".team-member-carousel");
-            let currentX = 0;
-            const targetX = -77;
-            const step = 0.01;
-            let isPlaying = true;
-            section.addEventListener("mouseenter", function () {
-                isPlaying = false;
-            });
-            section.addEventListener("mouseleave", function () {
-                isPlaying = true;
-            });
+    <script type="text/javascript">
+        const div = document.querySelector("#rewind");
+        const section = document.querySelector(".team-member-carousel");
+        let currentX = 0;
+        const targetX = -77;
+        const step = 0.01;
+        let isPlaying = true;
+        section.addEventListener("mouseenter", function () {
+            isPlaying = false;
+        });
+        section.addEventListener("mouseleave", function () {
+            isPlaying = true;
+        });
 
-            function updatePosition() {
-                if (!isPlaying) {
-                    window.requestAnimationFrame(updatePosition);
-                    return;
-                }
-                currentX -= step;
-                div.style.transform = `translate3d(${currentX}%, 0px, 0px)`;
-                if (currentX > targetX) {
-                    window.requestAnimationFrame(updatePosition);
-                }
+        function updatePosition() {
+            if (!isPlaying) {
+                window.requestAnimationFrame(updatePosition);
+                return;
             }
+            currentX -= step;
+            div.style.transform = `translate3d(${currentX}%, 0px, 0px)`;
+            if (currentX > targetX) {
+                window.requestAnimationFrame(updatePosition);
+            }
+        }
 
-            updatePosition();
-        </script>
+        updatePosition();
+    </script>
 @endpush
