@@ -1,8 +1,10 @@
 <?php
-
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Aboutus\Index as AboutusIndex;
 use App\Http\Livewire\Appointment\BackendAppoitment;
+use App\Http\Livewire\Appointment\Appointments;
+use App\Http\Livewire\Appointment\Create as AppointmentCreate;
+use App\Http\Livewire\Appointment\Edit as AppointmentEdit;
 use App\Http\Livewire\Contactinfo\Index as ContactinfoIndex;
 use App\Http\Livewire\Contactmessage\Index as ContactmessageIndex;
 use App\Http\Livewire\CoreValue\Index as CoreValueIndex;
@@ -23,6 +25,7 @@ use App\Http\Livewire\Frontend\LegalFees;
 use App\Http\Livewire\Frontend\Search;
 use App\Http\Livewire\Frontend\SingleService;
 use App\Http\Livewire\Frontend\Team;
+use App\Http\Livewire\Frontend\Profile;
 use App\Http\Livewire\Guideline\Create as GuidelineCreate;
 use App\Http\Livewire\Guideline\Edit as GuidelineEdit;
 use App\Http\Livewire\Guideline\Index as GuidelineIndex;
@@ -66,7 +69,6 @@ return 'Clear Cache';
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
-
 
 // backend
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
@@ -116,23 +118,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('contact_messages', ContactmessageIndex::class)->name('contact_messages');
     //Appointment page customize
     Route::get('appointment', BackendAppoitment::class)->name('appointment');
+    Route::get('appointments', Appointments::class)->name('appointments');
+    Route::get('create_appointments', AppointmentCreate::class)->name('create.appointment');
+    Route::get('edit_appointment/{id}', AppointmentEdit::class)->name('edit.appointment');
     //Core Value
     Route::get('core_value', CoreValueIndex::class)->name('core_value');
 });
 
-// Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/request_data', [HomeController::class, 'request_data'])->name('request_data');
 
 // frontend
 Route::get('/', Home::class)->name('home');
 Route::get('/service/{parent_slag}/{slag}', SingleService::class)->name('service');
-Route::get('/blog_list/{type}', BlogList::class)->name('blog_list');
-Route::get('/blog_single/{type}/{slag}', BlogSingle::class)->name('blog_single');
+Route::get('/blog-list/{type}', BlogList::class)->name('blog_list');
+Route::get('/blog-single/{type}/{slag}', BlogSingle::class)->name('blog_single');
 Route::get('/team', Team::class)->name('team');
 Route::get('/faq', Faq::class)->name('faq');
-Route::get('/legal_fees', LegalFees::class)->name('legal_fees');
-Route::get('/about_us', AboutUs::class)->name('about_us');
-Route::get('/contact_us', ContactUs::class)->name('contact_us');
+Route::get('/legal-fees', LegalFees::class)->name('legal_fees');
+Route::get('/about-us', AboutUs::class)->name('about_us');
+Route::get('/contact-us', ContactUs::class)->name('contact_us');
 Route::get('/free-appointment', Appointment::class)->name('appointment');
 Route::get('/paid-appointment', Appointment2::class)->name('appointment2');
 Route::get('/search/{search}', Search::class)->name('search');
+Route::get('/profile/{id}',Profile::class)->name('profile_details');

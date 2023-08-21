@@ -1,11 +1,10 @@
 <x-slot name="title">
     Team Member
 </x-slot>
-
+ 
 <div>
     <!-- Slider Section -->
     <img src="{{ asset('assets/frontend/img/team-page-bg.jpg') }}">
-
 
     <section class="team-members-section pt-5 pb-5">
         <div class="container">
@@ -23,10 +22,16 @@
                             <img src="{{ asset('storage/' . $data['image']) }}">
                             <h3>{{ $data['name'] }}</h3>
                             <h5>{{ $data['designation'] }}</h5>
-                            <button class="btn mt-4" type="submit"
+                            {{-- <button class="btn mt-4" type="submit"
                                 style="height: 36px;padding: 5px;font-size: 15px;width: 100%;border-radius: 8px;"
                                 wire:click="team_details({{ $data['id'] }})">See Details <i
-                                    class="fa fa-angle-right"></i></button>
+                                    class="fa fa-angle-right"></i>
+                            </button> --}}
+                            <a href="{{ route('profile_details',['id' => $data['id']]) }}">
+                                <button class="btn mt-4" type="submit"
+                                style="height: 36px;padding: 5px;font-size: 15px;width: 100%;border-radius: 8px;"
+                                >See Details<i class="fa fa-angle-right"></i>
+                            </button></a>
                         </div>
                     </div>
                 @endforeach
@@ -41,7 +46,6 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                
                 <div class="modal-body">
                     <div id="tpc" class="zoom-anim-dialog" style="margin:0px">
                         <div class="tp-header">
@@ -50,7 +54,6 @@
                             </div>
 
                             <div class="tp-meta">
-                            
                                 <h3>{{ $name }}</h3>
                                 <h5>{{ $designation }}</h5>
                                 <div class="social_icons">
@@ -69,7 +72,6 @@
                             </div>
                         </div>
                         <div class="tp-body">
-                            <p>{!! $about !!}</p>
                         </div>
                     </div>
                 </div>
@@ -77,7 +79,6 @@
 
                 <a href="{{ route('appointment') }}" type="button" class="btn btn-secondary" style="border-radius:10px">{{ setting(32) }} <i class="fa fa-angle-right"></i></a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:10px">Close</button>
-
                 </div>
             </div>
         </div>
@@ -91,7 +92,6 @@
     <script>
         window.addEventListener('open_model', event => {
             $('#teamdetails').modal('show');
-
         });
     </script>
 @endpush

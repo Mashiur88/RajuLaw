@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Team;
+namespace App\Http\Livewire\Appointment;
 
+use App\Models\Appointment;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -76,6 +77,6 @@ class Edit extends Component
     }
     
     public function render(){
-        return view('livewire.team.edit')->layout('admin.app');
+        return view('livewire.appointment.edit')->layout('admin.app');
     }
 }

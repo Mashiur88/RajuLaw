@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Team;
+namespace App\Http\Livewire\Appointment;
 
+use App\Models\Appointment;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -9,7 +10,7 @@ use Livewire\WithFileUploads;
 class Create extends Component
 {
     use WithFileUploads;
-    public $page_title = "Create Team Member";
+    public $page_title = "Create Appointment";
 
     public $name,$fb,$in,$twt,$about;
     public $image;
@@ -57,9 +58,8 @@ class Create extends Component
         return redirect(request()->header('Referer'));
     }
 
-    public function render()
-    {
-        return view('livewire.team.create')
+    public function render(){
+        return view('livewire.appointment.create')
             ->layout('admin.app');
     }
 }

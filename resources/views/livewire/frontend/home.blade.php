@@ -2,13 +2,28 @@
     {{ $page_title }}
 </x-slot>
 @push('css')
-    <style>
-        section.slider-section {
-            background-image: url({{ asset("assets/frontend/img/banner/Vector_Bg.png") }});
-            background-position: bottom center;
-            background-repeat: no-repeat;
-        }
-    </style>
+<style>
+    section.slider-section {
+        background-image: url({{ asset("assets/frontend/img/banner/Vector_Bg.png") }});
+        background-position: bottom center;
+        background-repeat: no-repeat;
+    }
+
+    .map-container{
+        height:570px;
+    }
+
+    .map{
+        width:100%; 
+        height:100%;
+        padding: 0px 15px;
+    }
+
+    svg{
+        height: 520px;
+    }
+
+</style>
 @endpush
 <div>
     <!-- Slider Section -->
@@ -57,18 +72,55 @@
         </div>
     </div>
 
+    <section>
+        <div class="container-fluid">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img class="d-block w-100" src="..." alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                    <img class="d-block w-100" src="..." alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                    <img class="d-block w-100" src="..." alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-5">
+        <div class="map-container">
+            <div id="world-map" class="map">
+                
+                
+                
+            </div>      
+        </div>
+    </section>
+
     <section class="second_section pb-3 mb-5 pb-5">
         <div class="container px-5 mb-5">
-
             <div class="w-100 d-flex justify-content-center">
                 <div class="sec-title">
                     <h2 class="blue mb-5">{{ setting(12) }}</h2>
                 </div>
             </div>
-
         </div>
-
-
 
         <div class="team-member-carousel">
             <div class="rewind animarq" id="rewind">
@@ -81,8 +133,8 @@
                             <div class="team-meta">
                                 <h3>{{ $data['name'] }}</h3>
                                 <h5>{{ $data['designation'] }}</h5>
-                                {{--  <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
-                                        class="fas fa-angle-right ml-1"></i></a> --}}
+                                <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
+                                        class="fas fa-angle-right ml-1"></i></a>
                                 <div id="tpc-{{ $key + 1 }}" class="zoom-anim-dialog mfp-hide">
                                     <div class="tp-header">
                                         <div class="tp-img">
@@ -159,7 +211,6 @@
     </section>
 
     @include('frontend.pasges.home_missle_section')
-
 
     <!-- FAQ section start -->
     <section class="faq-section pb-5">
@@ -410,5 +461,16 @@
             }
         }
         updatePosition();
+
+        $(document).ready(function(){
+            $('.carousel').carousel();
+            $('#world-map').vectorMap({
+                map: 'world_mill_en',
+                zoomOnScroll: false,
+                scale: ['#C8EEFF', '#0071A4'],    //
+                normalizeFunction: 'polynomial'
+            });
+        });
+
     </script>
 @endpush

@@ -20,6 +20,12 @@
                 <form wire:submit.prevent='update'>
                     <x-form.input_field labelname="Name" for="name" wire:model.debounce.300ms='name' />
                     <x-form.input_field labelname="Designation" for="designation" wire:model.debounce.300ms='designation' />
+                    <x-form.input_field labelname="Email" for="email" wire:model.debounce.300ms='email' />
+                    <x-form.input_field labelname="Phone Number" for="phone_number" wire:model.debounce.300ms='phone_number' />
+                    <x-form.input_field labelname="Branch" for="branch" wire:model.debounce.300ms='branch' />
+                    <x-form.input_field labelname="Languages" for="languages" wire:model.debounce.300ms='languages' />
+                    <x-form.textarea labelname="Address" for="address" id="address"
+                        wire:model.debounce.300ms='address'/>
                     <x-form.input_field labelname="Facebook Link" for="fb" wire:model.debounce.300ms='fb' />
                     <x-form.input_field labelname="Twitter Link" for="twt" wire:model.debounce.300ms='twt' />
                     <x-form.input_field labelname="linkdin Link" for="in" wire:model.debounce.300ms='in' />
@@ -42,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
+            
             $('#summernote').summernote({
                 placeholder: '',
                 tabsize: 2,
@@ -55,7 +62,6 @@
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']]
                 ],
-
                 callbacks: {
                     onChange: function(contents, $editable) {
                         @this.set('about', contents)
@@ -63,7 +69,27 @@
                 }
             });
 
-            $('.select2').select2();
+            $('#address').summernote({
+                placeholder: '',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('address', contents)
+                    }
+                }
+            });
+
+            // $('.select2').select2();
         });
     </script>
 @endpush

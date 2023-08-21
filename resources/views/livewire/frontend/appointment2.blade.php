@@ -131,10 +131,6 @@ Credit or Debit Card or eCheck:
         </form>
     </section>
 
-
-
-
-
 </div>
 @push('js')
     <script src="{{ asset('assets/frontend/js/vendor/jquery-3.5.1.min.js') }}"></script>
@@ -152,7 +148,6 @@ Credit or Debit Card or eCheck:
             utm: {}
         });
     </script>
-
 
     <script>
         var enableDates = [{

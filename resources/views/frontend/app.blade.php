@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/frontend/css/jquery-jvectormap-2.0.5.css') }}">
     @stack('css')
     <livewire:styles />
 </head>
@@ -51,6 +52,8 @@
     <script src="{{ asset('assets/frontend/js/vendor/tiny-slider.js') }}"></script>
     <!-- Main script-->
     <script src="{{ asset('assets/frontend/js/main-script.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-jvectormap-2.0.5.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-jvectormap-world-mill-en.js') }}"></script>
     <livewire:scripts />
     @stack('js')
 </body>
