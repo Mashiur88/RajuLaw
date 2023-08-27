@@ -12,48 +12,49 @@ class Create extends Component
     use WithFileUploads;
     public $page_title = "Create Appointment";
 
-    public $name,$fb,$in,$twt,$about;
-    public $image;
-    public $image_name;
-    public $designation;
-    public $languages,$email,$phone_number,$branch,$address;
+    public $attorny_id, $attornyList;
+    public $appointment , $appointment_id;
+    public $duration1, $duration2, $duration3;
+    public $charge1, $charge2, $charge3;
+    public $note;
+    public $group_name;
 
-    protected $rules = [
-        'name' => ['required'],
-        'designation' => ['required'],
-        'about' => ['required'],
-        'email' => ['required'],
-        'phone_number' => ['required'],
-        'branch' => ['required'],
-        'address' => ['required'],
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ];
+    // protected $rules = [
+    //     'name' => ['required'],
+    //     'designation' => ['required'],
+    //     'about' => ['required'],
+    //     'email' => ['required'],
+    //     'phone_number' => ['required'],
+    //     'branch' => ['required'],
+    //     'address' => ['required'],
+    //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    // ];
 
-    public function updated($property)
-    {
-        $this->validateOnly($property);
+    // public function updated($property)
+    // {
+    //     $this->validateOnly($property);
+    // }
+
+    public function mount(){
+        $this->attornyList = Team::where('designation','Supervising Attorney')->orWhere('designation','Founder & Principal Attorny')->get();
+        // dd($this->attornyList);
     }
 
     public function store()
     {
-        $team_create = new Team();
-        $team_create->name  = $this->name;
-        $team_create->designation  = $this->designation;
-        $team_create->about  = $this->about;
-        $team_create->email  = $this->email;
-        $team_create->phone_number  = $this->phone_number;
-        $team_create->branch  = $this->branch;
-        $team_create->address  = $this->address;
-        $team_create->languages  = $this->languages;
-        $team_create->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
-        $team_create->fb  = $this->fb;
-        $team_create->twt  = $this->twt;
-        $team_create->in  = $this->in;
-        $team_create->image  = $this->image->store('files', 'public');
-        $team_create->save();
-        // dd($this);
+        $appointment = new Appointment();
+        $appointment->attorny_id = $this->attorny_id;
+        $appointment->duration1 = $this->duration1;
+        $appointment->duration2 = $this->duration2;
+        $appointment->duration3 = $this->duration3;
+        $appointment->charge1 = $this->charge1;
+        $appointment->charge2 = $this->charge2;
+        $appointment->charge3 = $this->charge3;
+        $appointment->note = $this->note;
+        $appointment->group_name = $this->group_name;
+        $appointment->save();
 
-        session()->flash('message', 'Team created successfully');
+        session()->flash('message', 'Appointment created successfully');
         $this->reset();
         return redirect(request()->header('Referer'));
     }

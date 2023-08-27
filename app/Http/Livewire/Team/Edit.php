@@ -40,7 +40,7 @@ class Edit extends Component
         // dd($member);
         $this->name = $member->name;
         $this->designation = $member->designation;
-        $this->about = $member->about;
+        $this->about = $member->about; 
         $this->fb = $member->fb;
         $this->twt = $member->twt;
         $this->in = $member->in;
@@ -50,6 +50,7 @@ class Edit extends Component
         $this->email = $member->email;
         $this->languages = $member->languages;
         $this->image = $member->image;
+
     }
 
     public function update(){
@@ -57,11 +58,11 @@ class Edit extends Component
         $member_update->name  = $this->name;
         $member_update->designation  = $this->designation;
         $member_update->about  = $this->about;
-        $team_create->email  = $this->email;
-        $team_create->phone  = $this->phone_number;
-        $team_create->branch  = $this->branch;
-        $team_create->address  = $this->address;
-        $team_create->languages  = $this->languages;
+        $member_update->email  = $this->email;
+        $member_update->phone_number  = $this->phone_number;
+        $member_update->branch  = $this->branch;
+        $member_update->address  = $this->address;
+        $member_update->languages  = $this->languages;
         $member_update->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
         $member_update->fb  = $this->fb;
         $member_update->twt  = $this->twt;
@@ -71,7 +72,7 @@ class Edit extends Component
 
         session()->flash('message', 'Member Updated successfully');
         $this->emitSelf('refresh_data');
-        $this->image = $member_update->image;
+        // $this->image = $member_update->image;
         return redirect(request()->header('Referer'));
     }
     

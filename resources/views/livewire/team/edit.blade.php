@@ -34,7 +34,7 @@
                     <div class="avatar avatar-md me-2">
                         <img src="{{ asset('storage/' . $image) }}" alt="Avatar" class="rounded-circle">
                     </div>
-                    <x-form.input_field labelname="Upload profile image (357 x 448)" for="image" type="file"
+                    <x-form.input_field labelname="Upload profile image (643 x 700)" for="image" type="file"
                         wire:model.debounce.500ms='image' />
                     <x-form.button title="Update" type="submit" wire:loading.attr='disabled' :disabled="$disabled" />
                 </form>

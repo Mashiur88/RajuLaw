@@ -51,7 +51,7 @@
                         </ul>
                     </li>
                     <li class="has-submenu">
-                        <a href="{{ route('appointment') }}" target="_blank">Events</a>
+                        <a href="{{ route('event.list') }}" target="_blank">Events</a>
                     </li>
                     <li class="has-submenu">
                         <a href="#">More <i class="fa fa-angle-down"></i></a>

@@ -37,7 +37,7 @@
                             <img src="{{ $image->temporaryUrl() }}" alt="Avatar" class="rounded-circle">
                         </div>
                     @endif
-                    <x-form.input_field labelname="Upload profile image (357 x 448)" for="image" type="file" wire:model.debounce.300ms='image' />
+                    <x-form.input_field labelname="Upload profile image (643 x 700)" for="image" type="file" wire:model.debounce.300ms='image' />
                     <x-form.button title="Save" type="submit" wire:loading.attr='disabled' :disabled="$disabled" />
                 </form>
             </div>

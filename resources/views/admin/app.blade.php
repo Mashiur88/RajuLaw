@@ -36,15 +36,18 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/libs/typeahead-js/typeahead.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('assets/backend/vendor/libs/select2/select2.css') }}" />
-    <script src="{{ asset('assets/backend/vendor/js/helpers.js') }}"></script>
-    <script src="{{ asset('assets/backend/vendor/js/template-customizer.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/config.js') }}"></script>
+    
     <style>
     .red{
         color: red;
     }</style>
     <livewire:styles />
     @stack('css')laravel
+    <script src="{{ asset('assets/backend/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/config.js') }}"></script>
+    {{-- @wireUiScripts
+    <script src="//unpkg.com/alpinejs" defer></script> --}}
 </head>
 
 <body id="root">

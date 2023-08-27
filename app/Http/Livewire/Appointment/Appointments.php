@@ -7,17 +7,24 @@ use Livewire\Component;
 
 class Appointments extends Component
 {
-    public $text, $subject, $edit_id;
+    // public $text, $subject, $edit_id;
     public $appointments;
     public $page_title = 'Attorny Appointment Details';
 
-    protected $rules = [
-        'text' => ['required'],
-    ];
+    // protected $rules = [
+    //     'text' => ['required'],
+    // ];
 
     public function mount(){
-        $this->appointments = Appointment::all();
+        $this->appointments = Appointment::with('attorny')->orderBy('attorny_id')->get()->toArray();
+        // dd($this->appointments);
+    }
 
+    public function deleteconfirm($id)
+    {
+        $this->data = Appointment::find($id);
+        dd($this->data);
+        $this->emit('swal', 'are u sure?', 'warning');
     }
 
     // public function update()

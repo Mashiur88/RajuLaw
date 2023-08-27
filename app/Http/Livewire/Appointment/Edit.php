@@ -11,68 +11,60 @@ class Edit extends Component
 {
     use WithFileUploads;
     protected $listeners = ['refresh_data'=>'$refresh'];
-    public $page_title = "Update Team Member";
+    public $page_title = "Update Appointment";
 
-    public $member_id;
-    public $name,$fb,$in,$twt,$about;
-    public $image;
-    public $image_name;
-    public $designation;
-    public $languages,$email,$phone,$branch,$address;
+    public $attorny_id;
+    public $appointment , $appointment_id;
+    public $duration1, $duration2, $duration3;
+    public $charge1, $charge2, $charge3;
+    public $note;
+    public $group_name;
 
-    protected $rules = [
-        'name' => ['required'],
-        'designation' => ['required'],
-        'about' => ['required'],
-        'email' => ['required'],
-        'phone_number' => ['required'],
-        'branch' => ['required'],
-        'address' => ['required'],
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ];
+    // protected $rules = [
+    //     'name' => ['required'],
+    //     'designation' => ['required'],
+    //     'about' => ['required'],
+    //     'email' => ['required'],
+    //     'phone_number' => ['required'],
+    //     'branch' => ['required'],
+    //     'address' => ['required'],
+    //     'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    // ];
 
-    public function updated($property){
-        $this->validateOnly($property);
-    }
+    // public function updated($property){
+    //     $this->validateOnly($property);
+    // }
 
-    public function mount($member_id){
-        $this->member_id = $member_id;
-        $member = Team::find($member_id);
-        // dd($member);
-        $this->name = $member->name;
-        $this->designation = $member->designation;
-        $this->about = $member->about;
-        $this->fb = $member->fb;
-        $this->twt = $member->twt;
-        $this->in = $member->in;
-        $this->address = $member->address;
-        $this->branch = $member->branch;
-        $this->phone_number = $member->phone_number;
-        $this->email = $member->email;
-        $this->languages = $member->languages;
-        $this->image = $member->image;
+    public function mount($id){
+        $this->appointment_id = $id;
+        $appointment = Appointment::find($this->appointment_id);
+        // dd($appointment);
+        $this->attorny_id = $appointment->attorny_id;
+        $this->duration1 = $appointment->duration1;
+        $this->duration2 = $appointment->duration2;
+        $this->duration3 = $appointment->duration3;
+        $this->charge1 = $appointment->charge1;
+        $this->charge2 = $appointment->charge2;
+        $this->charge3 = $appointment->charge3;
+        $this->note = $appointment->note;
+        $this->group_name = $appointment->group_name;
     }
 
     public function update(){
-        $member_update = Team::find($this->member_id);
-        $member_update->name  = $this->name;
-        $member_update->designation  = $this->designation;
-        $member_update->about  = $this->about;
-        $team_create->email  = $this->email;
-        $team_create->phone  = $this->phone_number;
-        $team_create->branch  = $this->branch;
-        $team_create->address  = $this->address;
-        $team_create->languages  = $this->languages;
-        $member_update->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
-        $member_update->fb  = $this->fb;
-        $member_update->twt  = $this->twt;
-        $member_update->in  = $this->in;
-        $member_update->image  = $this->image !== $member_update->image ? $this->image->store('files', 'public') : $member_update->image;
-        $member_update->update();
+        $appointment = Appointment::find($this->appointment_id);
+        $appointment->attorny_id = $this->attorny_id;
+        $appointment->duration1 = $this->duration1;
+        $appointment->duration2 = $this->duration2;
+        $appointment->duration3 = $this->duration3;
+        $appointment->charge1 = $this->charge1;
+        $appointment->charge2 = $this->charge2;
+        $appointment->charge3 = $this->charge3;
+        $appointment->note = $this->note;
+        $appointment->group_name = $this->group_name;
+        $appointment->update();
 
-        session()->flash('message', 'Member Updated successfully');
+        session()->flash('message', 'Appointment Updated successfully');
         $this->emitSelf('refresh_data');
-        $this->image = $member_update->image;
         return redirect(request()->header('Referer'));
     }
     

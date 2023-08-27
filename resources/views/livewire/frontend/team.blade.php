@@ -31,7 +31,8 @@
                                 <button class="btn mt-4" type="submit"
                                 style="height: 36px;padding: 5px;font-size: 15px;width: 100%;border-radius: 8px;"
                                 >See Details<i class="fa fa-angle-right"></i>
-                            </button></a>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -84,8 +85,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 @push('js')

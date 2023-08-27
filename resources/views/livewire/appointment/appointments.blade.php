@@ -2,8 +2,14 @@
     {{ $page_title }}
 </x-slot>
 
-<div>
+<style>
+    .length{
+        min-height: 200px;
+        padding: 10px;
+    }
+</style>
 
+<div>
     {{-- <div class="card mb-4">
         <h5 class="card-header">Search</h5>
         <form class="card-body">
@@ -44,39 +50,44 @@
     <a class="btn btn-primary" href="{{ route('admin.create.appointment') }}">Create Appointment</a>
     <div class="card mt-3">
         <h5 class="card-header">{{ $page_title }}</h5>
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive text-nowrap length">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Attorny Name</th>
                         <th>Designation</th>
-                        <th>Images</th>
-                        <th>Actions</th>
+                        <th class="text-center">Appointment Type</th>
+                        <th class="text-center">Images</th>
+                        <th class="text-center">Created At</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @if(!empty($members))
-                        @foreach ($members as  $member)
-                            <tr wire:sortable.item="{{ $member->id }}" wire:key="task-{{ $member->id }}">
-                                <td>{{ $member->name }}</td>
-                                <td>{{ $member->designation }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/' . $member['image']) }}" class="rounded avatar-xs" />
+                    @if(!empty($appointments))
+                        @foreach ($appointments as  $appointment)
+                            <tr>
+                                <td>{{ $appointment['attorny']['name'] }}</td>
+                                <td>{{ $appointment['attorny']['designation'] }}</td>
+                                <td class="text-center">
+                                    {{ $appointment['group_name'] }}
                                 </td>
-                                <td><span
-                                        class="badge bg-label-primary me-1">{{ date_convertion($member['created_at']) }}</span>
+                                <td class="text-center">
+                                    <img src="{{ asset('storage/' . $appointment['attorny']['image']) }}" class="rounded avatar-xs" />
                                 </td>
-                                <td>
+                                <td class="text-center"><span
+                                        class="badge bg-label-primary me-1">{{ date_convertion($appointment['created_at']) }}</span>
+                                </td>
+                                <td class="text-center">
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="{{ route('admin.edit_member', $member->id) }}"><i
+                                                href="{{ route('admin.edit.appointment', $appointment['id']) }}"><i
                                                     class="bx bx-edit-alt me-1"></i>
                                                 Edit</a>
                                             <a class="dropdown-item" href="javascript:void(0);"
-                                                wire:click='deleteconfirm({{ $member->id }})'><i
+                                                wire:click='deleteconfirm({{ $appointment['id'] }})'><i
                                                     class="bx bx-trash me-1"></i>
                                                 Delete</a>
                                         </div>
@@ -99,6 +110,7 @@
 @push('js')
     <script>
         Livewire.on('swal', function(e) {
+            debugger
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -117,6 +129,6 @@
                     )
                 }
             })
-        })
+        });
     </script>
 @endpush

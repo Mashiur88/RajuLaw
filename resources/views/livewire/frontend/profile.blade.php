@@ -54,6 +54,13 @@ h3{
     top: 550px; */
 }
 
+.profile{
+    text-align: left;
+}
+
+a{
+    color: none;
+}
 /* footer.footer{
     position: static;
 } */
@@ -81,14 +88,19 @@ h3{
                 </div>
                 <div class="col-md-4"  style="background-color: white; z-index: 3;">
                     <h1>Branch</h1>
-                    <p></p>
+                    <p>{{ $branch }}</p>
                     <h1>Get in touch</h1>
                     <h3>Languages</h3>
-                    <p></p>
+                    <p>{{ $languages}}</p>
                     <h3>Contact Information</h3>
-                    <p></p>
+                    <p>Email: {{ $email }}</p>
+                    <p>Phone: {{ $phone_number }}</p>
                     <h3>Connect Via</h3>
-                    <div><span><a href=""><i></i></a></span></div>
+                    <div class="social_icons profile">
+                        <span><a href="{{ $fb }}"><i class="fab fa-facebook"></i></a></span>
+                        <span><a href="{{ $twt }}"><i class="fab fa-twitter"></i></a></span>
+                        <span><a href="{{ $in }}"><i class="fab fa-linkedin"></i></a></span>
+                    </div>
                 </div>
             </div>
         </div>
