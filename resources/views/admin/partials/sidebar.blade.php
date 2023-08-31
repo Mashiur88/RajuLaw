@@ -159,7 +159,7 @@
 
         <li class="menu-item">
             <a href="{{ route('admin.events') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-detail"></i>
+                <i class='menu-icon tf-icons bx bxs-calendar-event'></i>
                 <div>Event Management</div>
             </a>
         </li>

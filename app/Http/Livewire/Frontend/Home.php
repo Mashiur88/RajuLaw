@@ -10,17 +10,20 @@ use App\Models\ServiceModel;
 use App\Models\Team;
 use App\Models\Techmodel;
 use App\Models\TestimonialModel;
+use App\Models\Event;
 use Livewire\Component;
 
 class Home extends Component
 {
     public $page_title = "Home";
     public $team_member,$faqs,$service_item,$meet_raju,$testimonial,$immigration_news,$selected_faq,$tech;
-
+    public $event_slider;
     public function mount()
     {
         $this->team_member = Team::orderBy('order')->get();
         $this->faqs = FaqModel::where('parent_id',"!=",0)->limit(4)->get();
+        $this->event_slider = Event::orderBy('event_date',"desc")->limit(3)->get();
+        // dd($this->event_slider);
         // inRandomOrder()->limit(5)->get()
         $this->selected_faq = $this->faqs->first();
         $this->meet_raju = MeedRajuModel::all();

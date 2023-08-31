@@ -76,20 +76,24 @@
         <div class="container-fluid">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    @foreach($event_slider as $event)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $event->id }}" class=""></li>
+                    @endforeach
+                    {{-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> --}}
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img class="d-block w-100" src="..." alt="First slide">
-                    </div>
-                    <div class="carousel-item">
+                    @foreach($event_slider as $event)
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{ asset('storage/' . $event->banner_images) }}" alt="First slide">
+                        </div>
+                    @endforeach
+                    {{-- <div class="carousel-item">
                     <img class="d-block w-100" src="..." alt="Second slide">
                     </div>
                     <div class="carousel-item">
                     <img class="d-block w-100" src="..." alt="Third slide">
-                    </div>
+                    </div> --}}
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -103,7 +107,14 @@
         </div>
     </section>
 
-    <section class="mt-5">
+    <section class="second_section pb-3 mb-5 pb-5 mt-5">
+        <div class="container px-5 mb-5">
+            <div class="w-100 d-flex justify-content-center">
+                <div class="sec-title">
+                    <h2 class="blue mb-5">{{ setting(40) }}</h2>
+                </div>
+            </div>
+        </div>
         <div class="map-container">
             <div id="world-map" class="map">
                 
@@ -463,12 +474,81 @@
         updatePosition();
 
         $(document).ready(function(){
+            var gdpData = {   
+                'BD': ' angladesh',
+                'BN': 'Brunei',
+                'MN': 'Mongolia',
+                'BH': 'Bahrain',
+                'BT': 'Bhutan',
+                'HK': 'Hong Kong',
+                'JO': 'Jordan',
+                'PS': 'Palestine',
+                'LB': 'Lebanon',
+                'LA': 'Lao PDR',
+                'TW': 'Taiwan',
+                'TR': 'Turkey',
+                'LK': 'Sri Lanka',
+                'TL': 'Timor-Leste',
+                'TM': 'Turkmenistan',
+                'TJ': 'Tajikistan',
+                'TH': 'Thailand',
+                'XC': 'N. Cyprus',
+                'NP': 'Nepal',
+                'PK': 'Pakistan',
+                'PH': 'Philippines',
+                '99':  'Siachen Glacier',
+                'AE': 'United Arab Emirates',
+                'CN': 'China',
+                'AF': 'Afghanistan',
+                'IQ': 'Iraq',
+                'JP': 'Japan',
+                'IR': 'Iran',
+                'AM': 'Armenia',
+                'SY': 'Syria',
+                'VN': 'Vietnam',
+                'GE': 'Georgia',
+                'IL': 'Israel',
+                'IN': 'India',
+                'AZ': 'Azerbaijan',
+                'ID': 'Indonesia',
+                'OM': 'Oman',
+                'KG': 'Kyrgyzstan',
+                'UZ': 'Uzbekistan',
+                'MM': 'Myanmar',
+                'SG': 'Singapore',
+                'KH': 'Cambodia',
+                'CY': 'Cyprus',
+                'QA': 'Qatar',
+                'KR': 'Korea',
+                'KP': 'Dem. Rep. Korea',
+                'KW': 'Kuwait',
+                'KZ': 'Kazakhstan',
+                'SA': 'Saudi Arabia',
+                'MY': 'Malaysia',
+                'YE': 'Yemen',
+            }
+
             $('.carousel').carousel();
+            // $('#world-map').vectorMap({
+            //     map: 'world_mill_en',
+            //     zoomOnScroll: false,
+            //     scale: ['#C8EEFF', '#0071A4'],    //
+            //     normalizeFunction: 'polynomial'
+            // });
+
             $('#world-map').vectorMap({
                 map: 'world_mill_en',
                 zoomOnScroll: false,
-                scale: ['#C8EEFF', '#0071A4'],    //
-                normalizeFunction: 'polynomial'
+                series: {
+                    regions: [{
+                    values: gdpData,
+                    scale: ['#C8EEFF', '#0071A4'],
+                    normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function(e, el, code){
+                    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+                }
             });
         });
 

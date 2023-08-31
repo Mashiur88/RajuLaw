@@ -60,7 +60,6 @@
                         <div class="mega-menu second-style">
                             <div class="container">
                                 <div class="person_section">
-
                                     <div class="item p-0">
                                         <a class="mega-link" href="{{ route('faq') }}">
                                             <img src="{{ asset('assets/frontend/img/mega-menu/FAQ_icon.png') }}">

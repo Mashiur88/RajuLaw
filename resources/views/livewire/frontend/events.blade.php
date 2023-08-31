@@ -28,6 +28,13 @@
         line-height: 1.6 em;
         color:#0b2d72 !important;
     }
+
+    .date{
+        background-color: rgb(171, 22, 22);
+        color:white;
+        padding: 5px;
+        border-radius: 5px;
+    }
 </style>
 @endpush
 <div class="">
@@ -45,10 +52,10 @@
                     <div class="row mt-5">
                 @endif
                 <div class="col-md-4 center p-3">
-                    <div class="card" style="width: 35rem; min-height: 325px;">
+                    <div class="card" style="width: 35rem; min-height: 350px;">
                         <img class="card-img-top design" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170">
                         <div class="card-body">
-                        <h5 class="card-title"></h5>
+                        <h5 class="card-title"><span class="date">{{ date_convertion($event->event_date) }}</span></h5>
                         <p class="card-text"><h2 class="text-design">{{ $event->event_name }}</h2></p>
                         <a href="{{ route('event_details',['id' => $event->id])}}" class="link">Read more..</a>
                     </div>

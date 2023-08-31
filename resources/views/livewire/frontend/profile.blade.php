@@ -78,7 +78,7 @@ a{
             </div>
         </div>
     </section>
-    <section style="z-index: 1;" class="info">
+    <section style="z-index: 1; y-index: -3;" class="info">
         <div class="container-fluid mt-5">
             <div class="row">
                 <div class="col-md-8">
