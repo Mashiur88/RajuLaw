@@ -32,6 +32,7 @@ class EditChild extends Component
         $service_parent = FaqChildModel::find($this->edit_id);
         $service_parent->title = $this->edit_parent_date['title'];
         $service_parent->desc = $this->edit_parent_date['desc'];
+        $service_parent->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->edit_parent_date['desc']));
         $service_parent->update();
 
         session()->flash('message', 'Updated successfully');

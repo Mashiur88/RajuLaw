@@ -27,7 +27,7 @@
                                                 </small></p>
                                             <h4>{{ $data['title'] }}</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['plain_desc']), 300, $end = '') }}
                                                 <a class="red"
                                                     href="{{ route('faq') }}">See Details
                                                 </a>
@@ -44,7 +44,7 @@
                                                 </small></p>
                                             <h4>{{ $data['title'] }}</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['plain_desc']), 300, $end = '') }}
                                                 <a class="red"
                                                     href="{{ route('blog_single', ['type' => 'immigration', 'slag' => $data['slag']]) }}">See Details
                                                 </a>
@@ -61,7 +61,7 @@
                                                 </small></p>
                                             <h4>{{ $data['title'] }}</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['plain_desc']), 300, $end = '') }}
                                                 <a class="red"
                                                     href="{{ route('blog_single', ['type' => 'guideline', 'slag' => $data['slag']]) }}">See Details
                                                 </a>
@@ -78,9 +78,9 @@
                                                 </small></p>
                                             <h4>{{ $data['name'] }}</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['plain_desc']), 300, $end = '') }}
                                                 <a class="red"
-                                                    href="{{ route('service', ['parent_slag' => '', 'slag' => $data['slag']]) }}">See Details
+                                                    href="{{ route('service', ['parent_slag' => $data['parent_service']['slug'], 'slag' => $data['slag']]) }}">See Details
                                                 </a>
                                             </p>
                                         </div>
@@ -94,8 +94,7 @@
                                                     {{ date_convertion($data['created_at']) }}
                                                 </small></p>
                                             <h4>{{ $data['name'] }}</h4>
-
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>
                                                 <a class="red"
                                                     href="{{ route('service', ['parent_slag' => 'guideline', 'slag' => $data['slag']]) }}">See Details
                                                 </a>
@@ -127,11 +126,28 @@
                                             <p><small><i class="icofont-clock-time"></i>
                                                     {{ date_convertion($data['created_at']) }}
                                                 </small></p>
-                                            <h4>{{ $data['name'] ."  ".$data['designation']  }}</h4>
+                                            <h4>{{ $data['legal_fees']['name'] }}</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['about']), 300, $end = '') }}
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['lebel'] . " = "  . $data['tag']), 300, $end = '') }}
                                                 <a class="red"
-                                                    href="{{ route('team') }}">See Details
+                                                    href="{{ route('legal_fees') }}">See Details
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($data['table_name'] == 'legal_fees')
+                                <div class="col-md-12 col-lg-12 mb-5">
+                                    <div class="post-box p-0 white-shadow-box">
+                                        <div style="padding: 20px; margin-top: -30px;height:245px">
+                                            <p><small><i class="icofont-clock-time"></i>
+                                                    {{ date_convertion($data['created_at']) }}
+                                                </small></p>
+                                            <h4>{{ $data['name'] }}</h4>
+
+                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['first_part'] . $data['second_part']), 300, $end = '') }}
+                                                <a class="red"
+                                                    href="{{ route('legal_fees') }}">See Details
                                                 </a>
                                             </p>
                                         </div>
@@ -146,7 +162,7 @@
                                                 </small></p>
                                             <h4>About us</h4>
 
-                                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($data['desc']), 300, $end = '') }}
+                                            <p>jhkg
                                                 <a class="red"
                                                     href="{{ route('about_us') }}">See Details
                                                 </a>

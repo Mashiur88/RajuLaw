@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/animated-headline.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.min.css') }}">
@@ -23,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/frontend/css/jquery-jvectormap-2.0.5.css') }}">
     @stack('css')
     <livewire:styles />
 </head>
@@ -51,6 +51,8 @@
     <script src="{{ asset('assets/frontend/js/vendor/tiny-slider.js') }}"></script>
     <!-- Main script-->
     <script src="{{ asset('assets/frontend/js/main-script.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-jvectormap-2.0.5.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/jquery-jvectormap-world-mill-en.js') }}"></script>
     <livewire:scripts />
     @stack('js')
 </body>

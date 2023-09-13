@@ -32,9 +32,9 @@ class CreateChild extends Component
         $service = new FaqChildModel();
         $service->title = $this->title;
         $service->desc = $this->desc;
+        $service->plain_desc = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->desc));
         $service->faq_id = $this->parent_id;
         $service->save();
-
         session()->flash('message', 'Created successfully');
         
         $this->back();

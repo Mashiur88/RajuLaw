@@ -47,8 +47,7 @@ class Index extends Component
         $this->tasks = Team::orderBy('order')->get();
     }
 
-    public function render()
-    {
+    public function render(){
         return view('livewire.team.index', [
             'members' => Team::search($this->search)
                 ->orderBy('order')->get()

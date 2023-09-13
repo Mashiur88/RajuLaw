@@ -157,6 +157,12 @@
             </ul>
         </li>
 
+        <li class="menu-item">
+            <a href="{{ route('admin.events') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-calendar-event'></i>
+                <div>Event Management</div>
+            </a>
+        </li>
 
         <li class="menu-item">
             <a href="{{ route('admin.all_testimonial') }}" class="menu-link">
@@ -166,7 +172,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{ route('admin.appointment') }}" class="menu-link">
+            <a href="{{ route('admin.appointments') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-zap"></i>
                 <div>Appointment page Setting</div>
             </a>
@@ -192,7 +198,6 @@
                 <div>Contact Info</div>
             </a>
         </li>
-
 
         <li class="menu-item">
             <a href="{{ route('admin.contact_messages') }}" class="menu-link">

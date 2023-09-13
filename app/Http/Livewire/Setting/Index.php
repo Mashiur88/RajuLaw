@@ -20,7 +20,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->update_mode = false;
+        $this->update_mode = false;  
     }
 
     public function edit($edit_id)
@@ -36,7 +36,7 @@ class Index extends Component
     public function update()
     {
         $this->validate();
-        $item = SettingModel::find($this->edit_id);
+        // $item = SettingModel::find($this->edit_id);
 
         $item = SettingModel::find($this->edit_id);
         $item->name = $this->name;

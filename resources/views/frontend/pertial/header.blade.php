@@ -51,13 +51,15 @@
                         </ul>
                     </li>
                     <li class="has-submenu">
+                        <a href="{{ route('event.list') }}" target="_blank">Events</a>
+                    </li>
+                    <li class="has-submenu">
                         <a href="#">More <i class="fa fa-angle-down"></i></a>
 
                         <!-- <div class="mega-menu"> -->
                         <div class="mega-menu second-style">
                             <div class="container">
                                 <div class="person_section">
-
                                     <div class="item p-0">
                                         <a class="mega-link" href="{{ route('faq') }}">
                                             <img src="{{ asset('assets/frontend/img/mega-menu/FAQ_icon.png') }}">
@@ -129,9 +131,9 @@
                 <a href="index.html">Services</a>
                 <ul class="m-sub-menu">
                     @foreach ($service_item as $key => $data)
-                            <li><a
-                                    href="{{ route('service', ['parent_slag'=>$data->slug,'slag'=>$data2->slag]) }}">{{ $data->name }}</a>
-                            </li>
+                        <li><a
+                                href="{{ route('service', ['parent_slag'=>$data->slug,'slag'=>$data2->slag]) }}">{{ $data->name }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </li>

@@ -14,7 +14,7 @@
         #calendly-block-1 {
             margin-top: 0;
             height: 900px;
-        }
+        } 
 
         @media only screen and (min-width: 780px) {
             #calendly-block-1 {

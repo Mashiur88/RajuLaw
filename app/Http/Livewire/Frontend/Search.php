@@ -32,7 +32,7 @@ class Search extends Component
             FaqChildModel::class =>
                 ['title', 'plain_desc'],
             ServiceModel::class =>
-                ['name','plain_desc'],
+                ['name'],
             ServiceChieldModel::class =>
                 ['name','plain_desc'],
             Team::class =>
@@ -56,9 +56,26 @@ class Search extends Component
 
             if($model == ServiceChieldModel::class){
                 $temp->with('parent_service');
+            } 
+            if($model == LegalFeesChildModel::class){
+                $temp->with('legalFees');
+            }
+            if ($model == ServiceModel::class) {
+                $temp->with('chirld_services');
+                $data = $temp->first();
+                if(!$data){ continue; }
+                foreach ($data->chirld_services as $chirld_service){
+                    $tableName = app($model)->getTable();
+                    $parentData=[
+                        'slug'=>$data->slug,
+                    ];
+                    $results[] = [[...$chirld_service->toArray(),'table_name'=>'service_chield','parent_service'=>$parentData]];
+                }
+            }
+            else{
+                $results[] = $temp->get()->toArray();
             }
 
-            $results[] = $temp->get()->toArray();
         }
         $data = array_merge(...$results);
 
