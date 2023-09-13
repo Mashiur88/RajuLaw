@@ -473,81 +473,23 @@
         }
         updatePosition();
 
-        $(document).ready(function(){
-            var gdpData = {   
-                'BD': ' angladesh',
-                'BN': 'Brunei',
-                'MN': 'Mongolia',
-                'BH': 'Bahrain',
-                'BT': 'Bhutan',
-                'HK': 'Hong Kong',
-                'JO': 'Jordan',
-                'PS': 'Palestine',
-                'LB': 'Lebanon',
-                'LA': 'Lao PDR',
-                'TW': 'Taiwan',
-                'TR': 'Turkey',
-                'LK': 'Sri Lanka',
-                'TL': 'Timor-Leste',
-                'TM': 'Turkmenistan',
-                'TJ': 'Tajikistan',
-                'TH': 'Thailand',
-                'XC': 'N. Cyprus',
-                'NP': 'Nepal',
-                'PK': 'Pakistan',
-                'PH': 'Philippines',
-                '99':  'Siachen Glacier',
-                'AE': 'United Arab Emirates',
-                'CN': 'China',
-                'AF': 'Afghanistan',
-                'IQ': 'Iraq',
-                'JP': 'Japan',
-                'IR': 'Iran',
-                'AM': 'Armenia',
-                'SY': 'Syria',
-                'VN': 'Vietnam',
-                'GE': 'Georgia',
-                'IL': 'Israel',
-                'IN': 'India',
-                'AZ': 'Azerbaijan',
-                'ID': 'Indonesia',
-                'OM': 'Oman',
-                'KG': 'Kyrgyzstan',
-                'UZ': 'Uzbekistan',
-                'MM': 'Myanmar',
-                'SG': 'Singapore',
-                'KH': 'Cambodia',
-                'CY': 'Cyprus',
-                'QA': 'Qatar',
-                'KR': 'Korea',
-                'KP': 'Dem. Rep. Korea',
-                'KW': 'Kuwait',
-                'KZ': 'Kazakhstan',
-                'SA': 'Saudi Arabia',
-                'MY': 'Malaysia',
-                'YE': 'Yemen',
-            }
+        $(document).ready(function () {
+            const gdpData = @json($map_data);
 
             $('.carousel').carousel();
-            // $('#world-map').vectorMap({
-            //     map: 'world_mill_en',
-            //     zoomOnScroll: false,
-            //     scale: ['#C8EEFF', '#0071A4'],    //
-            //     normalizeFunction: 'polynomial'
-            // });
 
             $('#world-map').vectorMap({
                 map: 'world_mill_en',
                 zoomOnScroll: false,
                 series: {
                     regions: [{
-                    values: gdpData,
-                    scale: ['#C8EEFF', '#0071A4'],
-                    normalizeFunction: 'polynomial'
+                        values: gdpData,
+                        scale: ['#FFFFFF', '#0071A4'],
+                        normalizeFunction: 'polynomial'
                     }]
                 },
-                onRegionTipShow: function(e, el, code){
-                    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+                onRegionTipShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
                 }
             });
         });

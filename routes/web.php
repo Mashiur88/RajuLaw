@@ -40,6 +40,7 @@ use App\Http\Livewire\ImmigrationNews\Index as ImmigrationNewsIndex;
 use App\Http\Livewire\LegalFees\Create as LegalFeesCreate;
 use App\Http\Livewire\LegalFees\Edit as LegalFeesEdit;
 use App\Http\Livewire\LegalFees\Index as LegalFeesIndex;
+use App\Http\Livewire\Map\Map;
 use App\Http\Livewire\MeetRaju\Index as MeetRajuIndex;
 use App\Http\Livewire\Service\CreateServiceChild;
 use App\Http\Livewire\Service\Index as ServiceIndex;
@@ -130,6 +131,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::get('events', Events::class)->name('events');
     Route::get('create_event', EventCreate::class)->name('create.event');
     Route::get('edit_event/{id}', EventEdit::class)->name('edit.event');
+
+    Route::get('map', Map::class)->name('map');
 
     //Core Value
     Route::get('core_value', CoreValueIndex::class)->name('core_value');
