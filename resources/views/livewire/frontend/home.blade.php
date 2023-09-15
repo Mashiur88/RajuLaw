@@ -478,22 +478,9 @@
         }
         updatePosition();
 
-        $(document).ready(function(){
-            var gdpData = {   
-                'BD': 25,
-                'BN': 25,
-                'MN': 30,
-                'BH': 25,
-                'BT': 43,
-                'HK': 0,
-                'JO': 0,
-                'PS': 0,
-                'LB': 0,
-                'LA': 55,
-                'YE': 0,
-                'US': 35
-            }
 
+        $(document).ready(function () {
+            const gdpData = @json($map_data);
             $('.carousel').carousel();
 
             $('#world-map').vectorMap({
@@ -501,13 +488,13 @@
                 zoomOnScroll: false,
                 series: {
                     regions: [{
-                    values: gdpData,
-                    scale: ['#FFFFFF', '#0071A4'],
-                    normalizeFunction: 'polynomial'
+                        values: gdpData,
+                        scale: ['#FFFFFF', '#0071A4'],
+                        normalizeFunction: 'polynomial'
                     }]
                 },
-                onRegionTipShow: function(e, el, code){
-                    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+                onRegionTipShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
                 }
             });
         });

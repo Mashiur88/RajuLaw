@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Frontend;
 use App\Models\FaqChildModel;
 use App\Models\FaqModel;
 use App\Models\ImmigrationNewsModel;
+use App\Models\MapModel;
 use App\Models\MeedRajuModel;
 use App\Models\ServiceModel;
 use App\Models\Team;
@@ -18,6 +19,7 @@ class Home extends Component
     public $page_title = "Home";
     public $team_member,$faqs,$service_item,$meet_raju,$testimonial,$immigration_news,$selected_faq,$tech;
     public $event_slider;
+    public $map_data;
     public function mount()
     {
         $this->team_member = Team::orderBy('order')->get();
@@ -31,6 +33,12 @@ class Home extends Component
         $this->testimonial = TestimonialModel::all();
         $this->immigration_news = ImmigrationNewsModel::all()->take(3);
         $this->tech = Techmodel::all();
+        $map_data = MapModel::query()->select('key','value')->get();
+        $keys = $map_data->pluck('key')->toArray();
+        $values = $map_data->pluck('value')->toArray();
+        $map_data = array_combine($keys, $values);
+        $this->map_data = $map_data;
+
     }
 
     public function selected_faq($clicked_faq)
