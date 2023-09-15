@@ -52,8 +52,8 @@
                     <div class="row mt-5">
                 @endif
                 <div class="col-md-4 center p-3">
-                    <div class="card" style="width: 35rem; min-height: 350px;">
-                        <img class="card-img-top design" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170">
+                    <div class="card shadow" style="width: 35rem; min-height: 350px;">
+                        <img class="card-img-top design p-1" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170">
                         <div class="card-body">
                         <h5 class="card-title"><span class="date">{{ date_convertion($event->event_date) }}</span></h5>
                         <p class="card-text"><h2 class="text-design">{{ $event->event_name }}</h2></p>

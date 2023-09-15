@@ -20,6 +20,8 @@
                 <x-alert />
                 <form wire:submit.prevent='update'>
                     <input type="hidden" name="attorny_id" id="attorny_id" wire:model="attorny_id"/>
+                    <x-form.textarea labelname="Attorny Note" for="attorny_note" id="attorny_note"
+                        wire:model.debounce.300ms='attorny_note'/>
                     <x-form.input_field labelname="Duration1" for="duration1" wire:model.debounce.300ms='duration1' />
                     <x-form.input_field labelname="Duration2" for="duration2" wire:model.debounce.300ms='duration2' />
                     <x-form.input_field labelname="Duration3" for="duration3" wire:model.debounce.300ms='duration3' />
@@ -47,6 +49,26 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $('#attorny_note').summernote({
+                placeholder: '',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('attorny_note', contents)
+                    }
+                }
+            });
             
             $('#note').summernote({
                 placeholder: '',

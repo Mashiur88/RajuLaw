@@ -14,3 +14,4 @@ class Appointment extends Model
         return $this->belongsTo(Team::class,'attorny_id');
     }
 }
+ 

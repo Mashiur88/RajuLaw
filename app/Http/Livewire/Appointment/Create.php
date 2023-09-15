@@ -12,7 +12,7 @@ class Create extends Component
     use WithFileUploads;
     public $page_title = "Create Appointment";
 
-    public $attorny_id, $attornyList;
+    public $attorny_id, $attorny_note, $attornyList;
     public $appointment , $appointment_id;
     public $duration1, $duration2, $duration3;
     public $charge1, $charge2, $charge3;
@@ -44,6 +44,7 @@ class Create extends Component
     {
         $appointment = new Appointment();
         $appointment->attorny_id = $this->attorny_id;
+        $appointment->attorny_note = $this->attorny_note;
         $appointment->duration1 = $this->duration1;
         $appointment->duration2 = $this->duration2;
         $appointment->duration3 = $this->duration3;

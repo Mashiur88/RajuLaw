@@ -18,4 +18,11 @@ class Team extends Model
             : static::query()->where('name', 'like', '%' . $search . '%')
             ->where('designation', 'like', '%' . $search . '%');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class,'attorny_id');
+    }
+
+    
 }

@@ -97,7 +97,7 @@ a{
                     <p>Phone: {{ $phone_number }}</p>
                     <h3>Connect Via</h3>
                     <div class="social_icons profile">
-                        <span><a href="{{ $fb }}"><i class="fab fa-facebook"></i></a></span>
+                        <span><a href="{{ $fb }}"><i class="fab fa-facebook-f"></i></a></span>
                         <span><a href="{{ $twt }}"><i class="fab fa-twitter"></i></a></span>
                         <span><a href="{{ $in }}"><i class="fab fa-linkedin"></i></a></span>
                     </div>

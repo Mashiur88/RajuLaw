@@ -125,10 +125,10 @@
 </div>
 @push('js')
     <script src="{{ asset('assets/frontend/js/vendor/jquery-3.5.1.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{{ asset('assets/frontend/js/vendor/virtual-select.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/jQuery.tagify.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/vendor/virtual-select.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/frontend/js/jQuery.tagify.min.js') }}"></script> 
 
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <script>
@@ -142,128 +142,128 @@
 
 
     <script>
-        var enableDates = [{
-                time: "1:00pm",
-                date: "28-03-2023",
-            },
-            {
-                time: "4:00pm",
-                date: "22-03-2023",
-            },
-            {
-                time: "3:00pm",
-                date: "18-03-2023",
-            },
-            {
-                time: "9:00pm",
-                date: "10-03-2023",
-            },
-            {
-                time: "10:00pm",
-                date: "20-03-2023",
-            },
-        ];
+        // var enableDates = [{
+        //         time: "1:00pm",
+        //         date: "28-03-2023",
+        //     },
+        //     {
+        //         time: "4:00pm",
+        //         date: "22-03-2023",
+        //     },
+        //     {
+        //         time: "3:00pm",
+        //         date: "18-03-2023",
+        //     },
+        //     {
+        //         time: "9:00pm",
+        //         date: "10-03-2023",
+        //     },
+        //     {
+        //         time: "10:00pm",
+        //         date: "20-03-2023",
+        //     },
+        // ];
 
-        $(document).ready(function() {
-            var enableDatesArray = [];
-            var sortDatesArry = [];
-            for (var i = 0; i < enableDates.length; i++) {
-                var dt = enableDates[i].date.replace("-", "/").replace("-", "/");
-                var dd, mm, yyy;
-                if (
-                    parseInt(dt.split("/")[0]) <= 9 ||
-                    parseInt(dt.split("/")[1]) <= 9
-                ) {
-                    dd = parseInt(dt.split("/")[0]);
-                    mm = parseInt(dt.split("/")[1]);
-                    yyy = dt.split("/")[2];
-                    enableDatesArray.push(dd + "/" + mm + "/" + yyy);
-                    sortDatesArry.push(
-                        new Date(yyy + "/" + dt.split("/")[1] + "/" + dt.split("/")[0])
-                    );
-                } else {
-                    enableDatesArray.push(dt);
-                    sortDatesArry.push(
-                        new Date(
-                            dt.split("/")[2] +
-                            "/" +
-                            dt.split("/")[1] +
-                            "/" +
-                            dt.split("/")[0] +
-                            "/"
-                        )
-                    );
-                }
-            }
-            var maxDt = new Date(Math.max.apply(null, sortDatesArry));
-            var minDt = new Date(Math.min.apply(null, sortDatesArry));
+        // $(document).ready(function() {
+        //     var enableDatesArray = [];
+        //     var sortDatesArry = [];
+        //     for (var i = 0; i < enableDates.length; i++) {
+        //         var dt = enableDates[i].date.replace("-", "/").replace("-", "/");
+        //         var dd, mm, yyy;
+        //         if (
+        //             parseInt(dt.split("/")[0]) <= 9 ||
+        //             parseInt(dt.split("/")[1]) <= 9
+        //         ) {
+        //             dd = parseInt(dt.split("/")[0]);
+        //             mm = parseInt(dt.split("/")[1]);
+        //             yyy = dt.split("/")[2];
+        //             enableDatesArray.push(dd + "/" + mm + "/" + yyy);
+        //             sortDatesArry.push(
+        //                 new Date(yyy + "/" + dt.split("/")[1] + "/" + dt.split("/")[0])
+        //             );
+        //         } else {
+        //             enableDatesArray.push(dt);
+        //             sortDatesArry.push(
+        //                 new Date(
+        //                     dt.split("/")[2] +
+        //                     "/" +
+        //                     dt.split("/")[1] +
+        //                     "/" +
+        //                     dt.split("/")[0] +
+        //                     "/"
+        //                 )
+        //             );
+        //         }
+        //     }
+        //     var maxDt = new Date(Math.max.apply(null, sortDatesArry));
+        //     var minDt = new Date(Math.min.apply(null, sortDatesArry));
 
-            $("#datepicker")
-                .datepicker({
-                    format: "dd-mm-yyyy",
-                    autoclose: true,
-                    startDate: minDt,
-                    endDate: maxDt,
-                    beforeShowDay: function(date) {
-                        var dt_ddmmyyyy =
-                            date.getDate() +
-                            "/" +
-                            (date.getMonth() + 1) +
-                            "/" +
-                            date.getFullYear();
-                        return enableDatesArray.indexOf(dt_ddmmyyyy) != -1;
-                    },
-                })
-                .on("changeDate", function(e) {
-                    var selectedDate = e.format("dd-mm-yyyy");
-                    let currentDate = enableDates.find((d) => d.date === selectedDate);
+        //     $("#datepicker")
+        //         .datepicker({
+        //             format: "dd-mm-yyyy",
+        //             autoclose: true,
+        //             startDate: minDt,
+        //             endDate: maxDt,
+        //             beforeShowDay: function(date) {
+        //                 var dt_ddmmyyyy =
+        //                     date.getDate() +
+        //                     "/" +
+        //                     (date.getMonth() + 1) +
+        //                     "/" +
+        //                     date.getFullYear();
+        //                 return enableDatesArray.indexOf(dt_ddmmyyyy) != -1;
+        //             },
+        //         })
+        //         .on("changeDate", function(e) {
+        //             var selectedDate = e.format("dd-mm-yyyy");
+        //             let currentDate = enableDates.find((d) => d.date === selectedDate);
 
-                    const [day, month, year] = selectedDate.split("-");
-                    const date = new Date(`${year}-${month}-${day}`);
-                    const fD = date.toLocaleDateString("en-US", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    });
-                    let scheduleTime = currentDate.time + ", " + fD;
+        //             const [day, month, year] = selectedDate.split("-");
+        //             const date = new Date(`${year}-${month}-${day}`);
+        //             const fD = date.toLocaleDateString("en-US", {
+        //                 weekday: "long",
+        //                 year: "numeric",
+        //                 month: "long",
+        //                 day: "numeric",
+        //             });
+        //             let scheduleTime = currentDate.time + ", " + fD;
 
-                    document.querySelector("#time-select").value = currentDate.time;
-                    document.querySelector(".selected-time-show").style.display =
-                        "block";
-                    document.querySelector(".schedule-time").textContent = scheduleTime;
-                    document.getElementById("schedule-time-inp").value = scheduleTime;
-                });
+        //             document.querySelector("#time-select").value = currentDate.time;
+        //             document.querySelector(".selected-time-show").style.display =
+        //                 "block";
+        //             document.querySelector(".schedule-time").textContent = scheduleTime;
+        //             document.getElementById("schedule-time-inp").value = scheduleTime;
+        //         });
 
-            $("[name=inputTags]").tagify({
-                duplicates: false,
-                maxTags: 10,
-                pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-                validate: function(e) {
-                    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                    return pattern.test(e.value);
-                },
-            });
-        });
+        //     $("[name=inputTags]").tagify({
+        //         duplicates: false,
+        //         maxTags: 10,
+        //         pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+        //         validate: function(e) {
+        //             const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        //             return pattern.test(e.value);
+        //         },
+        //     });
+        // });
     </script>
 
     <script>
-        var swiper = new Swiper(".swiper-container", {
-            slidesPerView: 1,
-            grabCursor: true,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 3,
-                },
-                640: {
-                    slidesPerView: 2,
-                },
-            },
-        });
+        // var swiper = new Swiper(".swiper-container", {
+        //     slidesPerView: 1,
+        //     grabCursor: true,
+        //     spaceBetween: 10,
+        //     navigation: {
+        //         nextEl: ".swiper-button-next",
+        //         prevEl: ".swiper-button-prev",
+        //     },
+        //     breakpoints: {
+        //         768: {
+        //             slidesPerView: 3,
+        //         },
+        //         640: {
+        //             slidesPerView: 2,
+        //         },
+        //     },
+        // });
     </script>
 @endpush

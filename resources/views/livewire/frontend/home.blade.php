@@ -45,7 +45,7 @@
     </section>
 
     <!-- Service Section start -->
-    <div class="container white-shadow-box px-5 mb-5" style="margin-top: -30px; border-radius: 200px;">
+    <div class="container white-shadow-box px-5" style="margin-top: -30px; border-radius: 200px;">
         <div class="row counter-row">
 
             <div class="col-md-4 col-sm-12 br-right">
@@ -73,41 +73,45 @@
     </div>
 
     <section>
+        <div class="container px-5">
+            <div class="w-100 d-flex justify-content-center">
+                <div class="sec-title">
+                    <h2 class="blue mb-5">Recent Events</h2>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    @foreach($event_slider as $event)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $event->id }}" class=""></li>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    @foreach($event_slider as $key => $event)
+                        <li data-target="#myCarousel" data-slide-to="{{ $key }}" class="{{ $key === 0 ? 'active' : '' }}"></li>
                     @endforeach
-                    {{-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> --}}
-                </ol>
+                </ul>
+
                 <div class="carousel-inner">
-                    @foreach($event_slider as $event)
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset('storage/' . $event->banner_images) }}" alt="First slide">
+                    @foreach($event_slider as $key => $event)
+                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $event->banner_images) }}" height="600" alt="{{ $event->event_name }}">
+                            {{-- <div class="carousel-caption">
+                                <h3>{{ $item->title }}</h3>
+                                <p>{{ $item->description }}</p>
+                            </div> --}}
                         </div>
                     @endforeach
-                    {{-- <div class="carousel-item">
-                    <img class="d-block w-100" src="..." alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                    <img class="d-block w-100" src="..." alt="Third slide">
-                    </div> --}}
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+            
+                <!-- Controls -->
+                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="second_section pb-3 mb-5 pb-5 mt-5">
+    <section class="second_section pb-3 pb-5">
         <div class="container px-5 mb-5">
             <div class="w-100 d-flex justify-content-center">
                 <div class="sec-title">
@@ -117,7 +121,6 @@
         </div>
         <div class="map-container">
             <div id="world-map" class="map">
-                
                 
                 
             </div>      
@@ -144,9 +147,11 @@
                             <div class="team-meta">
                                 <h3>{{ $data['name'] }}</h3>
                                 <h5>{{ $data['designation'] }}</h5>
-                                <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
-                                        class="fas fa-angle-right ml-1"></i></a>
-                                <div id="tpc-{{ $key + 1 }}" class="zoom-anim-dialog mfp-hide">
+                                <a class="btn" href="{{ route('profile_details',['id' => $data['id']]) }}">Details <i
+                                    class="fas fa-angle-right ml-1"></i></a>
+                                {{-- <a class="btn mfp-popup" href="#tpc-{{ $key + 1 }}">Details <i
+                                        class="fas fa-angle-right ml-1"></i></a> --}}
+                                {{-- <div id="tpc-{{ $key + 1 }}" class="zoom-anim-dialog mfp-hide">
                                     <div class="tp-header">
                                         <div class="tp-img">
                                             <img src="{{ asset('storage/' . $data['image']) }}">
@@ -177,7 +182,7 @@
                                     </div>
                                     <a href="{{ route('appointment') }}" class="btn" 
                                                 style="width: 50%;border-radius: 8px;margin:auto;display:flex;align-items:center;justify-content:center;" wire:click="team_details(10)">{{ setting(32) }} <i class="fa fa-angle-right"></i></a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -475,66 +480,21 @@
 
         $(document).ready(function(){
             var gdpData = {   
-                'BD': ' angladesh',
-                'BN': 'Brunei',
-                'MN': 'Mongolia',
-                'BH': 'Bahrain',
-                'BT': 'Bhutan',
-                'HK': 'Hong Kong',
-                'JO': 'Jordan',
-                'PS': 'Palestine',
-                'LB': 'Lebanon',
-                'LA': 'Lao PDR',
-                'TW': 'Taiwan',
-                'TR': 'Turkey',
-                'LK': 'Sri Lanka',
-                'TL': 'Timor-Leste',
-                'TM': 'Turkmenistan',
-                'TJ': 'Tajikistan',
-                'TH': 'Thailand',
-                'XC': 'N. Cyprus',
-                'NP': 'Nepal',
-                'PK': 'Pakistan',
-                'PH': 'Philippines',
-                '99':  'Siachen Glacier',
-                'AE': 'United Arab Emirates',
-                'CN': 'China',
-                'AF': 'Afghanistan',
-                'IQ': 'Iraq',
-                'JP': 'Japan',
-                'IR': 'Iran',
-                'AM': 'Armenia',
-                'SY': 'Syria',
-                'VN': 'Vietnam',
-                'GE': 'Georgia',
-                'IL': 'Israel',
-                'IN': 'India',
-                'AZ': 'Azerbaijan',
-                'ID': 'Indonesia',
-                'OM': 'Oman',
-                'KG': 'Kyrgyzstan',
-                'UZ': 'Uzbekistan',
-                'MM': 'Myanmar',
-                'SG': 'Singapore',
-                'KH': 'Cambodia',
-                'CY': 'Cyprus',
-                'QA': 'Qatar',
-                'KR': 'Korea',
-                'KP': 'Dem. Rep. Korea',
-                'KW': 'Kuwait',
-                'KZ': 'Kazakhstan',
-                'SA': 'Saudi Arabia',
-                'MY': 'Malaysia',
-                'YE': 'Yemen',
+                'BD': 25,
+                'BN': 25,
+                'MN': 30,
+                'BH': 25,
+                'BT': 43,
+                'HK': 0,
+                'JO': 0,
+                'PS': 0,
+                'LB': 0,
+                'LA': 55,
+                'YE': 0,
+                'US': 35
             }
 
             $('.carousel').carousel();
-            // $('#world-map').vectorMap({
-            //     map: 'world_mill_en',
-            //     zoomOnScroll: false,
-            //     scale: ['#C8EEFF', '#0071A4'],    //
-            //     normalizeFunction: 'polynomial'
-            // });
 
             $('#world-map').vectorMap({
                 map: 'world_mill_en',
@@ -542,7 +502,7 @@
                 series: {
                     regions: [{
                     values: gdpData,
-                    scale: ['#C8EEFF', '#0071A4'],
+                    scale: ['#FFFFFF', '#0071A4'],
                     normalizeFunction: 'polynomial'
                     }]
                 },

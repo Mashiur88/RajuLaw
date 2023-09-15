@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li class="has-submenu">
-                        <a href="{{ route('appointment') }}">Appointment</a>
+                        <a href="{{ route('new-appointment') }}">Appointment</a>
                     </li>
                     <li class="has-submenu">
                         <a href="#">Who We Are <i class="fa fa-angle-down"></i></a>

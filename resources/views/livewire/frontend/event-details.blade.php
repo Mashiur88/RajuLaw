@@ -56,18 +56,39 @@
         padding: 3px;
         border-radius: 0px 11px 0px 11px;
     }
+
+    .mid-center{
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        color:antiquewhite !important;
+    }
+
+    #nm{
+        color:antiquewhite;
+        font-family: "Libre Baskerville";
+        font-size: 36px;
+        font-weight: regular;
+    }
+
+    li{
+        list-style: none;
+        display: inline;
+    }
+
+
 </style>
 @endpush
 <div class="">
     <div>
         <img src="{{ asset('assets/frontend/img/event-detail-bg.jpg') }}" height="550" width="1458">
-        <div><h1>{{ $event_name }}</h1></div>
-        <div>
-            <ul>
-                <li><i></i>Date: {{ $event_date }} </li>
-                <li><i></i>Location: {{ $location }}</li>
-                <li><i></i>Venue: {{ $venue }}</li>
-                <li><i></i>Organizer: {{ $event_organizer }}</li>
+        <div class="mid-center">
+            <h1 id="nm">{{ $event_name }}</h1>
+            <ul style="padding-left: 0">
+                <li><i class="fas fa-calendar-alt text-dark"></i>&nbsp;&nbsp;Date: {{ $event_date }} </li>&nbsp;&nbsp;
+                <li><i class="fas fa-map-marker-alt text-danger"></i>&nbsp;&nbsp;Location: {{ $location }}</li>&nbsp;&nbsp;
+                <li><i class="fas fa-building text-success"></i>&nbsp;&nbsp;Venue: {{ $venue }}</li>&nbsp;&nbsp;
+                <li><i class="fas fa-user-tie text-primary"></i>&nbsp;&nbsp;Organizer: {{ $event_organizer }}</li>&nbsp;&nbsp;
             </ul>
         </div>
     </div>
