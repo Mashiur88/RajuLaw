@@ -48,9 +48,9 @@
         @if(!empty($events))
         @php $i = 0; @endphp
             @foreach($events as $event)
-            @if($i == 0 || $i == 3)
-                    <div class="row mt-5">
-                @endif
+            @if($i % 3 == 0 || $i == 0)
+                <div class="row mt-5">
+            @endif
                 <div class="col-md-4 center p-3">
                     <div class="card shadow" style="width: 35rem; min-height: 350px;">
                         <img class="card-img-top design p-1" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170">
@@ -60,10 +60,9 @@
                         <a href="{{ route('event_details',['id' => $event->id])}}" class="link">Read more..</a>
                     </div>
                 </div>
-            </div>
-            @if($i == 2 || $i == 5)
-        </div>
-        @endif
+            @if($i % 3 == 2 || $i == count($events) - 1)
+                </div>
+            @endif
         @php $i++; @endphp
         @endforeach
         @endif

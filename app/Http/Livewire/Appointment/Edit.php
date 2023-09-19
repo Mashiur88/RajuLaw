@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Appointment;
 
 use App\Models\Appointment;
 use App\Models\Team;
-use Livewire\Component;
+use Livewire\Component; 
 use Livewire\WithFileUploads;
  
 class Edit extends Component
@@ -40,7 +40,6 @@ class Edit extends Component
         $appointment = Appointment::find($this->appointment_id);
         // dd($appointment);
         $this->attorny_id = $appointment->attorny_id;
-        $this->attorny_note = $appointment->attorny_note;
         $this->duration1 = $appointment->duration1;
         $this->duration2 = $appointment->duration2;
         $this->duration3 = $appointment->duration3;
@@ -54,7 +53,6 @@ class Edit extends Component
     public function update(){
         $appointment = Appointment::find($this->appointment_id);
         $appointment->attorny_id = $this->attorny_id;
-        $appointment->attorny_note = $this->attorny_note;
         $appointment->duration1 = $this->duration1;
         $appointment->duration2 = $this->duration2;
         $appointment->duration3 = $this->duration3;

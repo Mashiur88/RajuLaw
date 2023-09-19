@@ -20,8 +20,6 @@
                 <x-alert />
                 <form wire:submit.prevent='update'>
                     <input type="hidden" name="attorny_id" id="attorny_id" wire:model="attorny_id"/>
-                    <x-form.textarea labelname="Attorny Note" for="attorny_note" id="attorny_note"
-                        wire:model.debounce.300ms='attorny_note'/>
                     <x-form.input_field labelname="Duration1" for="duration1" wire:model.debounce.300ms='duration1' />
                     <x-form.input_field labelname="Duration2" for="duration2" wire:model.debounce.300ms='duration2' />
                     <x-form.input_field labelname="Duration3" for="duration3" wire:model.debounce.300ms='duration3' />

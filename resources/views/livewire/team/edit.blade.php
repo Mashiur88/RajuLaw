@@ -31,6 +31,8 @@
                     <x-form.input_field labelname="linkdin Link" for="in" wire:model.debounce.300ms='in' />
                     <x-form.textarea labelname="About" for="about" id="summernote"
                         wire:model.debounce.300ms='about'/>
+                    <x-form.textarea labelname="Attorny Note" for="attorny_note" id="attorny_note"
+                        wire:model.debounce.300ms='attorny_note'/>
                     <div class="avatar avatar-md me-2">
                         <img src="{{ asset('storage/' . $image) }}" alt="Avatar" class="rounded-circle">
                     </div>
@@ -48,6 +50,26 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            $('#attorny_note').summernote({
+                placeholder: '',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('attorny_note', contents)
+                    }
+                }
+            });
             
             $('#summernote').summernote({
                 placeholder: '',

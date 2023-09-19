@@ -37,14 +37,13 @@ class Create extends Component
 
     public function mount(){
         $this->attornyList = Team::where('designation','Supervising Attorney')->orWhere('designation','Founder & Principal Attorny')->get();
-        // dd($this->attornyList);
+        // dd($this->attornyList); 
     }
 
     public function store()
     {
         $appointment = new Appointment();
         $appointment->attorny_id = $this->attorny_id;
-        $appointment->attorny_note = $this->attorny_note;
         $appointment->duration1 = $this->duration1;
         $appointment->duration2 = $this->duration2;
         $appointment->duration3 = $this->duration3;

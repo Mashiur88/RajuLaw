@@ -179,6 +179,13 @@
         </li>
 
         <li class="menu-item">
+            <a href="{{ route('admin.map') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-zap"></i>
+                <div>Map Setting</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
             <a href="{{ route('admin.tech') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxl-internet-explorer"></i>
                 <div>Home Tech section</div>

@@ -44,6 +44,7 @@ class Create extends Component
         $team_create->branch  = $this->branch;
         $team_create->address  = $this->address;
         $team_create->languages  = $this->languages;
+        $team_create->attorny_note = $this->attorny_note;
         $team_create->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
         $team_create->fb  = $this->fb;
         $team_create->twt  = $this->twt;

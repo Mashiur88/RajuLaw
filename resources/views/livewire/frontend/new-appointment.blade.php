@@ -16,6 +16,20 @@
             height: 900px;
         }
 
+        .appointment-page .tab-content {
+            padding-top: 15px;
+        }
+
+        /* .appointment-page .tab-content.padding{
+            padding-top: 35px;
+        } */
+
+        .center{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         @media only screen and (min-width: 780px) {
             #calendly-block-1 {
                 height: 1150px;
@@ -40,7 +54,7 @@
             </div>
         </div>
     </section>
-
+    @php $i = 0; @endphp
     <section>
         <form>
             <div class="container">
@@ -59,190 +73,187 @@
                         </li>
                     @endforeach
                 </ul>
-
-                <div class="tab-content" id="myTabsContent">
+                <div class="tab-content padding" id="myTabsContent">
                     @foreach($datas as $key => $item)
                         <div class="tab-pane fade @if($key === 0) show active @endif" 
                             id="tabContent{{ $key }}" role="tabpanel" aria-labelledby="tab{{ $key }}">
-                            <div class="appointment-content">
-                                <div class="container">
-                                    <div class="tab-panel">
-                                        <div class="tab-ctrl"  style="margin-top: 0px;"`>
-                                            <a href="#Free" class="tab-link active">Free Consultation</a>  {{-- {{ route('appointment') }}{{ route('appointment2') }} --}}
-                                            <a href="#Paid" class="tab-link">PAID Consultation</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
+                            <div class="text-center">{!! $item['attorny_note'] !!}</div>
+                            <ul class="nav nav-tabs center" id="childTabs{{ $key }}">
+                                @foreach($item['group'] as $childIndex => $childTab)
+                                    {{-- <li class="nav-item">
+                                        <a class="nav-link {{ $childIndex == 0 ? 'active' : '' }}" data-toggle="tab" href="#childTab{{ $index }}-{{ $childIndex }}">{{ $childTab }}</a>
+                                    </li> --}}
 
-                            @foreach($item['group'] as $data)
+                                    <li class="nav-item">
+                                        <a class="nav-link @if($childIndex === 'Free') active @endif" 
+                                        id="tab{{ $childIndex }}" 
+                                        data-toggle="tab" 
+                                        href="#tabContent{{ $key }}{{ $childIndex }}" 
+                                        role="tab" 
+                                        aria-controls="tabContent{{ $key }}{{ $childIndex }}" 
+                                        aria-selected="@if($key === 0) true @else false @endif">
+                                        {{ $childTab['group_name'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                             <div class="tab-content">
-                                <div class="container">
-                                    <div id="Free" class="tab active">
-                                        <div class="consultation-form">
-                                            <div class="row">
-                                                <div id="free-consultation" class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-md-12 mb-5">
-                                                            <div class="payment-make-area">
-                                                                <h2>{{appointment_setting(9)}}</h2>
-                                                                <p>
-                                                                    <i class="icofont-info-circle"></i> {{appointment_setting(5)}}
-                                                                </p>
-                                                                <h3>$ {{appointment_setting(10)}}</h3>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click Here</a>
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                    {{appointment_setting(6)}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 mt-5 mb-5 mt-md-0">
-                                                            <div class="payment-make-area">
-                                                                <h2>{{appointment_setting(11)}}</h2>
-                                                                <p>
-                                                                    <i class="icofont-info-circle"></i> {{appointment_setting(7)}}
-                                                                </p>
-                                                                <h3>$ {{appointment_setting(12)}}</h3>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click here</a>
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                   {{appointment_setting(8)}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                
-                                                        <div class="col-md-12 mt-5 mt-md-0">
-                                                            <div class="payment-make-area">
-                                                                <h2>Payment Options</h2><br>
-                                                                <p style="font-size:20px">QuickPay With Zelle Or Paypal</p>
-                                                                <p>
-                                                                    Email: raju@rajulaw.com
+                                @foreach($item['group'] as $childIndex => $data)
+                                    <div id="tabContent{{ $key }}{{ $childIndex }}" class="tab-pane fade {{ $childIndex == 'Free' ? 'show active' : '' }}">
+                                        <!-- Content for child tab goes here -->
+                                        <div class="container">
+                                            <div class="consultation-form">
+                                                <div class="row">
+                                                    <div id="free-consultation" class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-12 mb-5">
+                                                                <div class="payment-make-area">
+                                                                    <h2>{{ $data['duration1'] }} minutes</h2>
+                                                                    <p>
+                                                                        <i class="icofont-info-circle"></i> {{appointment_setting(5)}}
+                                                                    </p>
+                                                                    <h3>$ {{ $data['charge1'] }}</h3>
+                                                                    <a href="https://secure.lawpay.com/pages/rajulaw/operating"
+                                                                        target="_blank">Click Here</a>
                                                                     <br>
-                                                                    Name: Mahajan Law LLC
-                                                                </p>
-                                                                
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                   ***This fee will be deducted from the service fee if you retain our services within two months after the consultation.
-                                                                    Credit or Debit Card or eCheck:
-                                                                </p>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click here</a>
+                                                                    <p style="text-align::center;font-size:17px">
+                                                                        {!! $data['note'] !!}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mt-5 mb-5 mt-md-0">
+                                                                <div class="payment-make-area">
+                                                                    <h2>{{ $data['duration2'] }} minutes</h2>
+                                                                    <p>
+                                                                        <i class="icofont-info-circle"></i> {{appointment_setting(7)}}
+                                                                    </p>
+                                                                    <h3>$ {{ $data['charge2'] }}</h3>
+                                                                    <a href="https://secure.lawpay.com/pages/rajulaw/operating"
+                                                                        target="_blank">Click here</a>
+                                                                    <br>
+                                                                    <p style="text-align::center;font-size:17px">
+                                                                        {!! $data['note'] !!}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                    
+                                                            <div class="col-md-12 mt-5 mt-md-0">
+                                                                <div class="payment-make-area">
+                                                                    <h2>Payment Options</h2><br>
+                                                                    <p style="font-size:20px">QuickPay With Zelle Or Paypal</p>
+                                                                    <p>
+                                                                        Email: raju@rajulaw.com
+                                                                        <br>
+                                                                        Name: Mahajan Law LLC
+                                                                    </p>
+                                                                    
+                                                                    <br>
+                                                                    <p style="text-align::center;font-size:17px">
+                                                                        ***This fee will be deducted from the service fee if you retain our services within two months after the consultation.
+                                                                        Credit or Debit Card or eCheck:
+                                                                    </p>
+                                                                    <a href="https://secure.lawpay.com/pages/rajulaw/operating"
+                                                                        target="_blank">Click here</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="calendly-inline-widget"
-                                                        data-url="https://calendly.com/rajulaw/paid-legal-consultation"
-                                                        style="position: relative;min-width:100%;height:700px;"></div>
+                                                    <div class="col-md-6">
+                                                        @if($data->attorny_id === 10)
+                                                        <div class="calendly-inline-widget"
+                                                            data-url="https://calendly.com/rajulaw/paid-legal-consultation"
+                                                            style="position: relative;min-width:100%;height:900px;">
+                                                        </div>
+                                                        @elseif($data->attorny_id === 15)
+                                                        <div class="calendly-inline-widget" 
+                                                            data-url="https://calendly.com/helenatrajulaw/free-legal-consultation" 
+                                                            style="position: relative;min-width:100%;height:900px;">
+                                                        </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="Paid" class="tab hidden">
-                                        <div class="consultation-form">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-md-12 mb-5">
-                                                            <div class="payment-make-area">
-                                                                <h2>{{appointment_setting(9)}}</h2>
-                                                                <p>
-                                                                    <i class="icofont-info-circle"></i> {{appointment_setting(5)}}
-                                                                </p>
-                                                                <h3>$ {{appointment_setting(10)}}</h3>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click Here</a>
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                    {{appointment_setting(6)}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 mt-5 mb-5 mt-md-0">
-                                                            <div class="payment-make-area">
-                                                                <h2>{{appointment_setting(11)}}</h2>
-                                                                <p>
-                                                                    <i class="icofont-info-circle"></i> {{appointment_setting(7)}}
-                                                                </p>
-                                                                <h3>$ {{appointment_setting(12)}}</h3>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click here</a>
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                   {{appointment_setting(8)}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                
-                                                        <div class="col-md-12 mt-5 mt-md-0">
-                                                            <div class="payment-make-area">
-                                                                <h2>Payment Options</h2><br>
-                                                                <p style="font-size:20px">QuickPay With Zelle Or Paypal</p>
-                                                                <p>
-                                                                    Email: raju@rajulaw.com
-                                                                    <br>
-                                                                    Name: Mahajan Law LLC
-                                                                </p>
-                                                                
-                                                                <br>
-                                                                <p style="text-align::center;font-size:17px">
-                                                                   ***This fee will be deducted from the service fee if you retain our services within two months after the consultation.
-                                                                    Credit or Debit Card or eCheck:
-                                                                </p>
-                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
-                                                                    target="_blank">Click here</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                
-                                                </div>
-                
-                                                <div class="col-md-6">
-                                                    <div class="calendly-inline-widget"
-                                                        data-url="https://calendly.com/rajulaw/paid-legal-consultation"
-                                                        style="position: relative;min-width:100%;height:700px;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
                     @endforeach
                 </div>
 
-                {{-- <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Tab 1</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Tab 2</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Tab 3</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabsContent">
-                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                        Content for Tab 1 goes here.
-                    </div>
-                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                        Content for Tab 2 goes here.
-                    </div>
-                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                        Content for Tab 3 goes here.
+                {{-- <div data-container="side-panel" class="WrdpezlzjKu1CoRihaXS Rb2e9IwsOFiKlSQIX7YA h8SdAyUIogxbb6E2K6rg">
+                    <div class="vijtvgyx_9152uGHndeu ij0tkCti5WftuGeyXE84">
+                        <div data-simplebar="init" class="g4kIX1cEbAUBf5qD2Udt EDtlc0_uFpxiVRZXmgE5">
+                            <div class="simplebar-wrapper" style="margin: 0px;">
+                                <div class="simplebar-height-auto-observer-wrapper">
+                                    <div class="simplebar-height-auto-observer">
+                                    </div>
+                                </div>
+                                <div class="simplebar-mask">
+                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                        <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
+                                            <div class="simplebar-content" style="padding: 0px;">
+                                                <div class="Z3zhp7CS7tNsCSX6_KJW KtQUtHvVvyq716gdA29c">
+                                                    <div class="dByP7suNIfCqOSaMcM6_ _CXzNZJcVKGB6oSxcDYf NADtHiCrFJt6_HOiERKZ">
+                                                        <div class="hPAsHHd0FN8065UiP705 bPjMK2MqWr9_ZWcyR8AJ">
+                                                            <img src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/logo/6982676/c88692e2.png" alt="Company logo" class="tSHP4_7gU1EgmhU4cdix _CTgggv6aoPOIqf8ezib">
+                                                        </div>
+                                                        <img src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/6982676/ea0940d7.jpg" alt="Raju Mahajan" class="l8_ox8UFJxB3KJMwAXbz _sRvWjppwBLlS1XAiWzQ MxVHio_kCduDhFI7_BcA SQ_Bs3qHy7XHjSu3iTrm">
+                                                        <div data-component="name" class="igLUv25CGn1lcV9W4BLo VHgo1Gke8HlB303mVQsG q4cOvvEx6Vd1DIiuVXso A0C3rymvRQogoPtPXiac">
+                                                            Raju Mahajan
+                                                        </div>
+                                                        <h1 class="aJYfwRAjpy85vGyjTA_k aNTWZDYqtNuY8Y3A0Rlw nCQmpQ3zRtu1xXb_x8YC R1isNh0uc_tOLdsYmkAw">
+                                                            Paid Legal Consultation
+                                                        </h1>
+                                                    </div>
+                                                    <div class="dukviH9w_EuHzTw_qBQt NgoiMCeEYfWcZjlNlAgG _o4yKEXO8fZvesyAJG0I _IRk0gtVIyTSjFkNgcus">
+                                                        <div data-container="details" class="_L4TEojXfdzWp8RxMPuB N0L2N94hAAnivlQ6DGit Ko5wAaZye5TiJ64tY67l">
+                                                            <div class="YAmKI90l5OyINFgGmq9L TuKawS25ZXxJafgZdElP">
+                                                                <div class="kjPV9BSUqWArFIVxfBTq _7Au4UjgXrnFtkfgdDsM">
+                                                                    <span class="b1hdxvdx b1wd19y1 s16dkyhx" aria-hidden="true">
+                                                                        <svg data-id="details-item-icon" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" role="img">
+                                                                            <path d="M.5 5a4.5 4.5 0 1 0 9 0 4.5 4.5 0 1 0-9 0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                                                                </path>
+                                                                                <path d="M5 3.269V5l1.759 2.052" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+
+                                                                                </path>
+                                                                        </svg>
+                                                                    </span>
+                                                                </div> 
+                                                                30&nbsp;min
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="yHJsX7btzZUMOuQu_qbF _QY08ZnTdckO8dGtuWjX rITYjoHV2NF_yl1tR68x JfQGCpel4t_oM2foWCI3 wlKFfVZJpBVMO1_YKK_f">
+                                                            <div class="k_tUa2XwT0esKZkWYshM UOUgYFhrylMAqJDUG1Tn">
+                                                                <p>This is a Paid Legal Consultation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="simplebar-placeholder" style="width: auto; height: 330px;">
+                                </div>
+                            </div>
+                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                </div>
+                            </div>
+                            <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div> --}}
+
             </div>
         </form>
     </section>
-
 </div>
 @push('js')
     {{-- <script src="{{ asset('assets/frontend/js/vendor/jquery-3.5.1.min.js') }}"></script>

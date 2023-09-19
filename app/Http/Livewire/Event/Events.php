@@ -21,8 +21,11 @@ class Events extends Component
     }
 
     public function deleteconfirm($id){
+        // dd($id);
         $this->data = Event::find($id);
+        // dd($this->data);
         $this->emit('swal', 'are u sure?', 'warning');
+        // $this->data->delete();
         // $this->dispatchBrowserEvent('deleted', [
         //     'title' => 'Data deleted'
         // ]);
@@ -34,18 +37,6 @@ class Events extends Component
             $this->emitSelf('data_deleted');
         }
     }
-
-    // public function update()
-    // {
-    //     $this->validate();
-    //     $item = AppointmentModel::find($this->edit_id);
-    //     $item->text = $this->text;
-    //     $item->update();
-
-    //     $this->mount();
-    //     $this->update_mode = false;
-    //     session()->flash('message', 'Updated successfully');
-    // }
 
     public function back(){
         $this->mount();

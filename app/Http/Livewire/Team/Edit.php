@@ -44,6 +44,7 @@ class Edit extends Component
         $this->fb = $member->fb;
         $this->twt = $member->twt;
         $this->in = $member->in;
+        $this->attorny_note = $member->attorny_note;
         $this->address = $member->address;
         $this->branch = $member->branch;
         $this->phone_number = $member->phone_number;
@@ -63,6 +64,7 @@ class Edit extends Component
         $member_update->branch  = $this->branch;
         $member_update->address  = $this->address;
         $member_update->languages  = $this->languages;
+        $member_update->attorny_note = $this->attorny_note;
         $member_update->plain_about = preg_replace('/\s+|&nbsp;/', ' ', strip_tags($this->about));
         $member_update->fb  = $this->fb;
         $member_update->twt  = $this->twt;

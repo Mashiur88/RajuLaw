@@ -31,7 +31,6 @@ class Map extends Component
 
     public function render()
     {
-
         return view('livewire.map.map')->layout('admin.app');
     }
 }

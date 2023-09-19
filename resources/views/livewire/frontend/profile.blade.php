@@ -36,9 +36,10 @@
 #image-position{
     height: 700px;
     width: 45%;
-    position: absolute;
+    position: relative;
     left: 10%;
 }
+
 h1{
     color: red;
     font-size: 30px;
@@ -49,9 +50,9 @@ h3{
     font-size: 25px;
 }
 
-.info{
-    /* position:absolute;
-    top: 550px; */
+.info1{
+    position: relative;
+    bottom: 150px;
 }
 
 .profile{
@@ -68,7 +69,7 @@ a{
 </style>
 @endpush
 
-<div class="container-fluid" style="position: relative;">
+<div class="container-fluid">
     <section  style="z-index: 2;">
         <div class="img-div">
             <img src="{{ asset('storage/' . $image) }}" id="image-position">
@@ -78,7 +79,7 @@ a{
             </div>
         </div>
     </section>
-    <section style="z-index: 1; y-index: -3;" class="info">
+    <section style="z-index: 1;" class="info1">
         <div class="container-fluid mt-5">
             <div class="row">
                 <div class="col-md-8">
@@ -86,7 +87,7 @@ a{
                         <p>{!! $about !!}</p>
                     </div>
                 </div>
-                <div class="col-md-4"  style="background-color: white; z-index: 3;">
+                <div class="col-md-4"  style="background-color: white; z-index: 3;padding: 28px;">
                     <h1>Branch</h1>
                     <p>{{ $branch }}</p>
                     <h1>Get in touch</h1>

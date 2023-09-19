@@ -25,10 +25,8 @@ class NewAppointment extends Component
 
     public function mount(){
         $temps = [];
-        // $temps = Appointment::with('attorny')->orderBy('attorny_id')->get()->toArray(); 
         $temps = Team::with('appointments')->whereIn('designation',['Supervising Attorney','Founder & Principal Attorny'])->get();
         // dd($temps);
-        // dd(gettype($temps));
          
         // foreach($temps as $temp){
         //     if(!empty($temp)){
@@ -51,11 +49,20 @@ class NewAppointment extends Component
         
         foreach($temps as $temp){
             $data['name'] = $temp->name;
-            $data['group']['free_appointment'] = $temp->appointments->where('group_name','Free')->first();
-            $data['group']['paid_appointment'] = $temp->appointments->where('group_name','Paid')->first();
+            $data['attorny_note'] = $temp->attorny_note;
+            $data['group']['Free'] = $temp->appointments->where('group_name','Free')->first();
+            $data['group']['Paid'] = $temp->appointments->where('group_name','Paid')->first();
             $this->datas[] = $data;
         }
         // dd($this->datas);
+
+        // foreach($this->datas as $item){
+        //     foreach($item['group'] as $key => $data){
+        //         echo $key;
+        //         echo $data['id'];
+        //     }
+        //     exit;
+        // }
     }
 
     public function render(){
