@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Event;
 
-use App\Models\event;
+use App\Models\Event;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -49,13 +49,14 @@ class Edit extends Component
 
     public function update(){
         $event = Event::find($this->event_id);
+        // dd($this->upload_image);
         $event->event_name = $this->event_name;
         $event->event_date = $this->event_date;
         $event->venue = $this->venue;
         $event->event_organizer = $this->event_organizer;
         $event->location = $this->location;
         $event->event_description = $this->event_description;
-        $event->banner_images  = $this->upload_image !== $event->banner_images ? $this->upload_image->store('files/event', 'public') : $event->banner_images;
+        $event->banner_images  = ($this->upload_image !== $event->banner_images) ? $this->upload_image->store('files/event', 'public') : $event->banner_images;
         $event->update();
         session()->flash('message', 'Event Updated successfully');
         $this->emitSelf('refresh_data');

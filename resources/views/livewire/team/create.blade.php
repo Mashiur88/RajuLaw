@@ -9,6 +9,12 @@
 @push('css')
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <style>
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+    }
+    </style>
 @endpush
 <div class="row justify-center">
     <div class="col-xl">
@@ -34,12 +40,20 @@
                         wire:model.debounce.300ms='about'/>
                     <x-form.textarea labelname="Attorny Note" for="attorny_note" id="attorny_note"
                         wire:model.debounce.300ms='attorny_note'/>
+                    <label class="checkbox-label">
+                        <input type="checkbox"
+                                class="form-check-input m-2"
+                                wire:model="appointment"
+                                value="">
+                        Has Appointment
+                    </label>
                     @if($image)
                         <div class="avatar avatar-md me-2">
                             <img src="{{ $image->temporaryUrl() }}" alt="Avatar" class="rounded-circle">
                         </div>
                     @endif
                     <x-form.input_field labelname="Upload profile image (643 x 700)" for="image" type="file" wire:model.debounce.300ms='image' />
+                    
                     <x-form.button title="Save" type="submit" wire:loading.attr='disabled' :disabled="$disabled" />
                 </form>
             </div>

@@ -21,7 +21,7 @@ class Map extends Component
         foreach ($this->selected as $item){
             $this->countryCodes->where('key',$item)->first()->update(['value'=>1]);
         }
-    }
+    } 
 
     public function mount()
     {

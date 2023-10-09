@@ -19,7 +19,13 @@
             <div class="card-body">
                 <x-alert />
                 <form wire:submit.prevent='update'>
-                    <input type="hidden" name="attorny_id" id="attorny_id" wire:model="attorny_id"/>
+                    <label for="Attorny" style="font-weight: 100;">Attorny</label>
+                    <select class="form-select mb-2" wire:model="attorny_id">
+                        <option value="">Select Attorny</option>
+                        @foreach($attornyList as $attorny)
+                            <option value="{{ $attorny->id }}">{{ $attorny->name }}</option>
+                        @endforeach
+                    </select>
                     <x-form.input_field labelname="Duration1" for="duration1" wire:model.debounce.300ms='duration1' />
                     <x-form.input_field labelname="Duration2" for="duration2" wire:model.debounce.300ms='duration2' />
                     <x-form.input_field labelname="Duration3" for="duration3" wire:model.debounce.300ms='duration3' />

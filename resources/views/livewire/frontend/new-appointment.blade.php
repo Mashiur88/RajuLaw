@@ -58,7 +58,7 @@
     <section>
         <form>
             <div class="container">
-                <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                <ul class="nav nav-tabs center" id="myTabs" role="tablist">
                     @foreach($datas as $key => $item)
                         <li class="nav-item">
                             <a class="nav-link @if($key === 0) active @endif" 
@@ -92,8 +92,8 @@
                                         role="tab" 
                                         aria-controls="tabContent{{ $key }}{{ $childIndex }}" 
                                         aria-selected="@if($key === 0) true @else false @endif">
-                                        {{ $childTab['group_name'] }}
-                                        </a>
+                                        {{ $childTab['group_name'] === 'Free' ? 'Free Appointment' : 'Paid Appointment' }}
+                                        </a> 
                                     </li>
                                 @endforeach
                             </ul>
@@ -136,40 +136,56 @@
                                                                     </p>
                                                                 </div>
                                                             </div>
-                    
-                                                            <div class="col-md-12 mt-5 mt-md-0">
+                                                            <div class="col-md-12 mt-5 mb-5 mt-md-0">
                                                                 <div class="payment-make-area">
-                                                                    <h2>Payment Options</h2><br>
-                                                                    <p style="font-size:20px">QuickPay With Zelle Or Paypal</p>
+                                                                    <h2>{{ $data['duration3'] }} minutes</h2>
                                                                     <p>
-                                                                        Email: raju@rajulaw.com
-                                                                        <br>
-                                                                        Name: Mahajan Law LLC
+                                                                        <i class="icofont-info-circle"></i> {{appointment_setting(7)}}
                                                                     </p>
-                                                                    
-                                                                    <br>
-                                                                    <p style="text-align::center;font-size:17px">
-                                                                        ***This fee will be deducted from the service fee if you retain our services within two months after the consultation.
-                                                                        Credit or Debit Card or eCheck:
-                                                                    </p>
+                                                                    <h3>$ {{ $data['charge3'] }}</h3>
                                                                     <a href="https://secure.lawpay.com/pages/rajulaw/operating"
                                                                         target="_blank">Click here</a>
+                                                                    <br>
+                                                                    <p style="text-align::center;font-size:17px">
+                                                                        {!! $data['note'] !!}
+                                                                    </p>
                                                                 </div>
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        @if($data->attorny_id === 10)
+                                                        @if($item['name'] === 'Raju Mahajan, Esq.')
                                                         <div class="calendly-inline-widget"
                                                             data-url="https://calendly.com/rajulaw/paid-legal-consultation"
                                                             style="position: relative;min-width:100%;height:900px;">
                                                         </div>
-                                                        @elseif($data->attorny_id === 15)
+                                                        @elseif($item['name'] === 'Helen H. Partlow, Esq.')
                                                         <div class="calendly-inline-widget" 
                                                             data-url="https://calendly.com/helenatrajulaw/free-legal-consultation" 
                                                             style="position: relative;min-width:100%;height:900px;">
                                                         </div>
                                                         @endif
+
+                                                        <div class="col-md-12 mt-5 mt-md-0">
+                                                            <div class="payment-make-area">
+                                                                <h2>Payment Options</h2><br>
+                                                                <p style="font-size:20px">QuickPay With Zelle Or Paypal</p>
+                                                                <p>
+                                                                    Email: raju@rajulaw.com
+                                                                    <br>
+                                                                    Name: Mahajan Law LLC
+                                                                </p>
+                                                                
+                                                                <br>
+                                                                <p style="text-align::center;font-size:17px">
+                                                                    ***This fee will be deducted from the service fee if you retain our services within two months after the consultation.
+                                                                    Credit or Debit Card or eCheck:
+                                                                </p>
+                                                                <a href="https://secure.lawpay.com/pages/rajulaw/operating"
+                                                                    target="_blank">Click here</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

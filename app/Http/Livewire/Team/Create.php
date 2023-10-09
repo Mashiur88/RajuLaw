@@ -16,6 +16,8 @@ class Create extends Component
     public $image_name;
     public $designation;
     public $languages,$email,$phone_number,$branch,$address;
+    public $attorny_note;
+    public $appointment;
 
     protected $rules = [
         'name' => ['required'],
@@ -49,6 +51,7 @@ class Create extends Component
         $team_create->fb  = $this->fb;
         $team_create->twt  = $this->twt;
         $team_create->in  = $this->in;
+        $team_create->appointment  = $this->appointment;
         $team_create->image  = $this->image->store('files', 'public');
         $team_create->save();
         // dd($this);

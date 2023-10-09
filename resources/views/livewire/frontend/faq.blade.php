@@ -70,7 +70,7 @@
                                                         class="card-body collapse {{ $key3 == 0 ? 'show' : '' }}"
                                                         data-parent="#accordion">
                                                         <p>
-                                                            {{ $data3['desc'] }}
+                                                            {{ $data3['plain_desc'] }}
                                                         </p>
                                                     </div>
                                                 @endforeach
@@ -97,7 +97,7 @@
                                                         class="card-body collapse {{ $key3 == 0 ? 'show' : '' }}"
                                                         data-parent="#accordion">
                                                         <p>
-                                                            {{ $data3['desc'] }}
+                                                            {{ $data3['plain_desc'] }}
                                                         </p>
                                                     </div>
                                                 @endforeach

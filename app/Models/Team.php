@@ -24,5 +24,13 @@ class Team extends Model
         return $this->hasMany(Appointment::class,'attorny_id');
     }
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($team) {
+             $team->appointments()->delete();
+        });
+    }
+
     
 }

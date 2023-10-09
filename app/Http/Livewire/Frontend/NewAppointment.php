@@ -25,7 +25,7 @@ class NewAppointment extends Component
 
     public function mount(){
         $temps = [];
-        $temps = Team::with('appointments')->whereIn('designation',['Supervising Attorney','Founder & Principal Attorny'])->get();
+        $temps = Team::with('appointments')->where('appointment','1')->get();
         // dd($temps);
          
         // foreach($temps as $temp){

@@ -51,15 +51,16 @@
             @if($i % 3 == 0 || $i == 0)
                 <div class="row mt-5">
             @endif
-                <div class="col-md-4 center p-3">
-                    <div class="card shadow" style="width: 35rem; min-height: 350px;">
-                        <img class="card-img-top design p-1" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170">
-                        <div class="card-body">
+            <div class="col-md-4 center p-3">
+                <div class="card shadow" style="width: 35rem; min-height: 350px;">
+                    <img class="card-img-top design p-1" src="{{ asset('storage/' . $event->banner_images) }}" alt="Card image cap" height="170"/>
+                    <div class="card-body">
                         <h5 class="card-title"><span class="date">{{ date_convertion($event->event_date) }}</span></h5>
                         <p class="card-text"><h2 class="text-design">{{ $event->event_name }}</h2></p>
                         <a href="{{ route('event_details',['id' => $event->id])}}" class="link">Read more..</a>
                     </div>
                 </div>
+            </div>
             @if($i % 3 == 2 || $i == count($events) - 1)
                 </div>
             @endif

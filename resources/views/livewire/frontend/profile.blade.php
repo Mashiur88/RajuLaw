@@ -41,7 +41,7 @@
 }
 
 h1{
-    color: red;
+    color: #be0b32;
     font-size: 30px;
 }
 
@@ -72,7 +72,7 @@ a{
 <div class="container-fluid">
     <section  style="z-index: 2;">
         <div class="img-div">
-            <img src="{{ asset('storage/' . $image) }}" id="image-position">
+            <img class="img-fluid" src="{{ asset('storage/' . $image) }}" id="image-position">
             <div class="mid-center">
                 <p id="img-designation">{{ $designation }}</p>
                 <p id="img-name">{{ $name }}</p>

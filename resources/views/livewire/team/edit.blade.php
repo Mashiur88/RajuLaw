@@ -8,6 +8,12 @@
 @push('css')
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <style>
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+    }
+    </style>
 @endpush
 <div class="row justify-center">
     <div class="col-xl">
@@ -33,6 +39,12 @@
                         wire:model.debounce.300ms='about'/>
                     <x-form.textarea labelname="Attorny Note" for="attorny_note" id="attorny_note"
                         wire:model.debounce.300ms='attorny_note'/>
+                    <label class="checkbox-label">
+                        <input type="checkbox"
+                            class="form-check-input m-2 "
+                            wire:model="appointment">
+                        Has Appointment
+                    </label><br>
                     <div class="avatar avatar-md me-2">
                         <img src="{{ asset('storage/' . $image) }}" alt="Avatar" class="rounded-circle">
                     </div>

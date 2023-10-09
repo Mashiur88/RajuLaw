@@ -264,7 +264,7 @@
                                         class="card-body collapse {{ $key == 0 ? 'show' : '' }}"
                                         data-parent="#accordion">
                                         <p>
-                                            {{ $data['desc'] }}
+                                            {!! $data['desc'] !!}
                                         </p>
                                     </div>
                                 @endforeach

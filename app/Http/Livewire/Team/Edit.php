@@ -18,6 +18,7 @@ class Edit extends Component
     public $image_name;
     public $designation;
     public $languages,$email,$phone,$branch,$address;
+    public $appointment;
 
     protected $rules = [
         'name' => ['required'],
@@ -51,6 +52,7 @@ class Edit extends Component
         $this->email = $member->email;
         $this->languages = $member->languages;
         $this->image = $member->image;
+        $this->appointment = $member->appointment;
 
     }
 
@@ -69,6 +71,7 @@ class Edit extends Component
         $member_update->fb  = $this->fb;
         $member_update->twt  = $this->twt;
         $member_update->in  = $this->in;
+        $member_update->appointment  = $this->appointment;
         $member_update->image  = $this->image !== $member_update->image ? $this->image->store('files', 'public') : $member_update->image;
         $member_update->update();
 

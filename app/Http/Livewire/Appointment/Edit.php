@@ -19,6 +19,7 @@ class Edit extends Component
     public $charge1, $charge2, $charge3;
     public $note;
     public $group_name;
+    public $attornyList;
 
     // protected $rules = [
     //     'name' => ['required'],
@@ -36,6 +37,9 @@ class Edit extends Component
     // }
 
     public function mount($id){
+        
+        $this->attornyList = Team::where('appointment','1')->get();
+
         $this->appointment_id = $id;
         $appointment = Appointment::find($this->appointment_id);
         // dd($appointment);

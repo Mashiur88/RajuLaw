@@ -22,7 +22,6 @@ class Appointments extends Component
 
     public function deleteconfirm($id)
     {
-        dd($id);
         $this->data = Appointment::find($id);
         // dd($this->data);
         $this->emit('swal', 'are u sure?', 'warning');

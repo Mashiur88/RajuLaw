@@ -6,7 +6,7 @@ use App\Models\Appointment;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
- 
+
 class Create extends Component
 {
     use WithFileUploads;
@@ -36,8 +36,9 @@ class Create extends Component
     // }
 
     public function mount(){
-        $this->attornyList = Team::where('designation','Supervising Attorney')->orWhere('designation','Founder & Principal Attorny')->get();
-        // dd($this->attornyList); 
+        $array = [];
+        $this->attornyList = Team::where('appointment','1')->get();
+        // dd($this->attornyList);
     }
 
     public function store()
